@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "first blog"
-date: 2026-02-04
+date: 2026-02-03
 author: Phat Nguyen
 ---
 
