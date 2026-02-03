@@ -5,43 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Phat Nguyen</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="logo">phat nguyen</a>
-            <nav>
-                <a href="index.html">home</a>
-                <a href="blog.html">blog</a>
-                <a href="about.html" class="active">about</a>
-            </nav>
-        </header>
+    
+    <header>
+        <a href="index.html" class="logo">phat nguyen</a>
+        <nav>
+            <a href="index.html">home</a>
+            <a href="blog.html">blog</a>
+            <a href="about.html" class="active">about</a>
+        </nav>
+    </header>
 
-        <main class="about-content">
-            <h1>about</h1>
-            <br>
-            <p>this is my website, where i post about what i had learn, thoughts, everything, etc.</p>
-
-            <div class="contact-info">
-                <h3>for contact:</h3>
-                <p><a href="mailto:nhtruongphat.forwork@gmail.com" style="color: inherit;">nhtruongphat.forwork@gmail.com</a></p>
-                
-                <br>
-                <h3>social:</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                
-                <br>
-                <p><strong>nguyen huu truong phat</strong></p>
-            </div>
-        </main>
-
-        <footer>
-            Copyright © 2026 Phat Nguyen; All rights reserved.
-        </footer>
+    <div class="about-header-wrapper">
+        <img src="profile.jpg" alt="Phat Nguyen" class="profile-pic">
+        <h1 class="profile-name-overlay">nguyen huu truong phat</h1>
     </div>
+
+    <main>
+        <div class="about-grid">
+            <div class="gray-box contact-col">
+                <p>for contact:</p>
+                <p class="contact-email">nhtruongphat.forwork@<br>gmail.com</p>
+                <br>
+                <p>social:</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/pht.8507/" target="_blank">
+                        <img src="icon-instagram.avif" alt="Instagram" class="social-icon-img">
+                    </a>
+                    <a href="https://www.facebook.com/pht.8507/" target="_blank">
+                        <img src="icon-facebook.avif" alt="Facebook" class="social-icon-img">
+                    </a>
+                    <a href="https://www.linkedin.com/in/nhtruongphat/" target="_blank">
+                        <img src="icon-linkedin.avif" alt="LinkedIn" class="social-icon-img">
+                    </a>
+                </div>
+            </div>
+
+            <div class="gray-box bio-col">
+                <p>this is my website, where i post about what i had learn, thoughts, everything, etc.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <span>Copyright © 2026 Phat Nguyen; All rights reserved.</span>
+        <span id="current-date">3/2/2026</span>
+    </footer>
+
+    <script>
+        const dateElement = document.getElementById('current-date');
+        const today = new Date();
+        dateElement.textContent = today.toLocaleDateString('vi-VN'); 
+    </script>
 </body>
 </html>
