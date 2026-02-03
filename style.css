@@ -1,146 +1,55 @@
-/* style.css - Phiên bản Font Spectral (Toàn bộ web) */
-/* Nhúng font Spectral từ Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap');
+/* --- PHẦN NÚT MENU (Thêm vào cuối file style.css) --- */
 
-:root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
+/* Mặc định trên máy tính thì ẩn nút menu đi */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5); /* Viền mỏng như hình bạn gửi */
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px;
+    color: white; /* Màu icon */
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    /* Áp dụng Spectral cho toàn bộ website */
-    font-family: 'Spectral', serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-size: 1.1rem; /* Tăng nhẹ cỡ chữ mặc định vì Spectral hơi nhỏ hơn font cũ */
-}
-
-/* --- HEADER --- */
-header {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('header-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 30px 50px;
-    transition: height 0.3s ease;
-}
-
-/* Header ngắn (Home + Blog Detail) */
-header.header-short { height: 150px; align-items: center; }
-
-/* Header cao (About) */
-header.header-tall { height: 380px; }
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 500; /* Tăng độ đậm chút cho Logo */
-    color: white;
-    text-decoration: none;
-    border-bottom: 1px solid white;
-    padding-bottom: 2px;
-}
-
-nav a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
-    margin-left: 30px;
-    font-size: 1.15rem;
-    transition: color 0.3s;
-}
-nav a:hover, nav a.active { color: white; text-decoration: underline; }
-
-/* --- MAIN --- */
-main { flex: 1; width: 100%; text-align: left; }
-
-/* --- TRANG HOME --- */
-.hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; }
-.hero h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 400; }
-.hero .cta-button { padding: 10px 30px; border: 1px solid black; color: black; text-decoration: none; font-size: 1.15rem; transition: 0.3s; }
-.hero .cta-button:hover { background: black; color: white; }
-
-/* --- TRANG BLOG LIST --- */
-.blog-list { list-style: none; padding: 60px 100px; max-width: 1200px; margin: 0 auto; }
-.blog-item { margin-bottom: 60px; }
-.blog-item h2 a { text-decoration: none; color: black; font-size: 2.2rem; font-weight: 400; }
-.blog-item p { color: #555; padding-left: 5px; margin-top: 10px; font-style: italic; /* Font Spectral nghiêng rất đẹp cho mô tả */ }
-
-/* --- TRANG BLOG DETAIL --- */
-.blog-detail-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 80px 20px;
-}
-
-.blog-detail-title {
-    font-size: 3rem;
-    font-weight: 500;
-    margin-bottom: 10px;
-    line-height: 1.2;
-}
-
-.blog-meta {
-    color: #888;
-    font-style: italic;
-    font-size: 1rem;
-    margin-bottom: 50px;
-    display: block;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 30px;
-}
-
-.blog-content p {
-    font-size: 1.25rem; /* Tăng cỡ chữ đọc bài */
-    line-height: 1.8;
-    margin-bottom: 30px;
-    text-align: justify;
-}
-
-.back-link {
-    display: inline-block;
-    margin-top: 50px;
-    text-decoration: none;
-    color: black;
-    border-bottom: 1px solid black;
-    font-size: 1.15rem;
-    padding-bottom: 2px;
-}
-.back-link:hover { opacity: 0.6; }
-
-
-/* --- TRANG ABOUT --- */
-.about-header-wrapper {
-    max-width: 1100px; width: 100%; margin: 0 auto; padding-left: 50px; 
-    display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-start;
-    margin-top: -120px; position: relative; z-index: 10; margin-bottom: 40px;
-}
-.profile-pic { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); flex-shrink: 0; background-color: #ddd; }
-.profile-name-overlay { color: white; font-size: 2.5rem; font-weight: 400; margin-left: 30px; margin-bottom: 110px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); line-height: 1.2; }
-.about-grid { display: grid; grid-template-columns: 250px 1fr; gap: 40px; max-width: 1100px; width: 100%; margin: 0 auto; padding-left: 50px; }
-.gray-box { background: #f4f4f4; padding: 30px; font-size: 1.15rem; height: fit-content; }
-.contact-col p { margin-bottom: 10px; }
-.contact-email { font-weight: 600; word-break: break-all; }
-.social-icons { display: flex; gap: 15px; margin-top: 20px; }
-.social-icon-img { width: 30px; height: 30px; filter: grayscale(100%); transition: 0.3s; cursor: pointer; }
-.social-icon-img:hover { filter: grayscale(0%); transform: scale(1.1); }
-
-/* Footer */
-footer { 
-    display: flex; justify-content: space-between; padding: 20px 50px; border-top: 1px solid black; margin-top: auto; 
-    font-family: 'Spectral', serif; /* Đồng bộ font */
-    font-size: 0.9rem; 
-}
-
-/* Mobile */
+/* --- MOBILE RESPONSIVE (Sửa lại phần này) --- */
 @media (max-width: 768px) {
-    header.header-short, header.header-tall { height: auto; padding: 20px; min-height: 150px; }
+    header.header-short, header.header-tall { 
+        height: auto; 
+        padding: 20px; 
+        min-height: 100px; /* Thu gọn header mobile */
+        flex-wrap: wrap; /* Cho phép nội dung rớt dòng */
+        align-items: center;
+    }
+
+    /* Hiện nút menu trên mobile */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Ẩn menu đi, chỉ hiện khi có class 'active' */
+    nav {
+        display: none;
+        width: 100%; /* Chiếm hết chiều ngang */
+        flex-direction: column;
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Khi bấm nút, JS thêm class active vào thì hiện ra */
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        display: block;
+        margin: 15px 0; /* Tăng khoảng cách để dễ bấm */
+        margin-left: 0;
+        font-size: 1.3rem;
+    }
+
+    /* Các phần khác giữ nguyên */
     .hero h1 { font-size: 2.5rem; }
     .about-header-wrapper { flex-direction: column; align-items: center; margin-top: -60px; padding-left: 0; text-align: center; }
     .profile-name-overlay { color: black; margin-left: 0; margin-bottom: 0; margin-top: 15px; text-shadow: none; }
