@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | Phat Nguyen</title>
     <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
-</head>
+    </head>
 <body>
     
     <header class="{% if page.header_style == 'tall' %}header-tall{% else %}header-short{% endif %}">
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
-        <nav>
+        
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
+        <nav id="main-nav">
             <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">home</a>
             <a href="{{ '/blog.html' | relative_url }}" class="{% if page.url contains '/blog' %}active{% endif %}">blog</a>
             <a href="{{ '/about.html' | relative_url }}" class="{% if page.url contains '/about' %}active{% endif %}">about</a>
@@ -30,6 +39,12 @@
         const dateElement = document.getElementById('current-date');
         const today = new Date();
         dateElement.textContent = today.toLocaleDateString('vi-VN'); 
+
+        // SCRIPT ĐIỀU KHIỂN MENU (Mới thêm)
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
