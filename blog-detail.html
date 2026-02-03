@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="logo">phat nguyen</a>
-            <nav>
-                <a href="index.html">home</a>
-                <a href="blog.html" class="active">blog</a>
-                <a href="about.html">about</a>
-            </nav>
-        </header>
+    
+    <header class="header-short">
+        <a href="index.html" class="logo">phat nguyen</a>
+        <nav>
+            <a href="index.html">home</a>
+            <a href="blog.html" class="active">blog</a>
+            <a href="about.html">about</a>
+        </nav>
+    </header>
 
-        <main class="blog-detail">
-            <h1>first blog</h1>
+    <main>
+        <div class="blog-detail-container">
+            
+            <h1 class="blog-detail-title">first blog</h1>
             <span class="blog-meta">Posted on Feb 3, 2026</span>
             
             <div class="blog-content">
@@ -34,11 +36,18 @@
             </div>
 
             <a href="blog.html" class="back-link">← Back to Blog</a>
-        </main>
+        </div>
+    </main>
 
-        <footer>
-            Copyright © 2026 Phat Nguyen; All rights reserved.
-        </footer>
-    </div>
+    <footer>
+        <span>Copyright © 2026 Phat Nguyen; All rights reserved.</span>
+        <span id="current-date">3/2/2026</span>
+    </footer>
+
+    <script>
+        const dateElement = document.getElementById('current-date');
+        const today = new Date();
+        dateElement.textContent = today.toLocaleDateString('vi-VN'); 
+    </script>
 </body>
 </html>
