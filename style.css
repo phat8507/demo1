@@ -1,4 +1,4 @@
-/* style.css - Phiên bản giống mẫu thiết kế */
+/* style.css - Phiên bản chuẩn theo hình mẫu */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap');
 
 :root {
@@ -13,7 +13,7 @@
 }
 
 body {
-    font-family: 'Playfair Display', serif; /* Font chữ có chân giống mẫu */
+    font-family: 'Playfair Display', serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
@@ -21,14 +21,13 @@ body {
     min-height: 100vh;
 }
 
-/* HEADER - Phần đầu trang màu đen */
+/* HEADER - Giữ nguyên hình nền tối */
 header {
-    /* Ảnh nền tối giống mẫu (City night). Bạn có thể thay link ảnh khác */
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
     background-size: cover;
     background-position: center;
     padding: 30px 50px;
-    color: white; /* Chữ màu trắng */
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,7 +38,7 @@ header {
     font-weight: 400;
     color: white;
     text-decoration: none;
-    border-bottom: 1px solid white; /* Gạch chân dưới tên */
+    border-bottom: 1px solid white;
     padding-bottom: 2px;
 }
 
@@ -57,38 +56,63 @@ nav a:hover, nav a.active {
     text-decoration: underline;
 }
 
-/* MAIN - Phần nội dung chính */
+/* MAIN CONTENT */
 main {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Căn giữa theo chiều dọc */
-    align-items: center; /* Căn giữa theo chiều ngang */
-    text-align: center;
-    padding: 60px 20px;
+    padding: 60px 100px; /* Căn lề rộng hai bên cho giống hình */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Home Page Styles */
-.hero h1 {
-    font-size: 3.5rem; /* Chữ to hơn */
-    font-weight: 400;
+/* Riêng trang Home thì căn giữa nội dung */
+.hero-content {
+    text-align: center;
+    margin-top: 100px;
+}
+.hero-content h1 {
+    font-size: 3.5rem;
     margin-bottom: 20px;
 }
-
-.cta-button {
+.hero-content .cta-button {
     display: inline-block;
     padding: 10px 30px;
-    background-color: transparent; /* Nền trong suốt */
     color: black;
     text-decoration: none;
-    border: 1px solid black; /* Viền đen mỏng */
+    border: 1px solid black;
     font-size: 1.1rem;
     transition: all 0.3s;
 }
-
-.cta-button:hover {
+.hero-content .cta-button:hover {
     background-color: black;
     color: white;
+}
+
+/* BLOG LIST - Chỉnh sửa theo yêu cầu của bạn */
+.blog-list {
+    list-style: none; /* Bỏ dấu chấm tròn (bullet) */
+    text-align: left; /* Căn lề trái giống hình ảnh */
+}
+
+.blog-item {
+    margin-bottom: 60px; /* Khoảng cách giữa các bài */
+}
+
+.blog-item h2 {
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.blog-item h2 a {
+    text-decoration: none;
+    color: black;
+}
+
+.blog-item p {
+    color: #666; /* Màu chữ xám nhạt cho mô tả */
+    font-size: 0.95rem;
+    padding-left: 5px;
 }
 
 /* FOOTER */
@@ -96,8 +120,8 @@ footer {
     display: flex;
     justify-content: space-between;
     padding: 20px 50px;
-    border-top: 1px solid black; /* Đường gạch ngang trên footer */
+    border-top: 1px solid black;
     font-size: 0.85rem;
-    font-family: 'Inter', sans-serif; /* Font chữ nhỏ không chân cho footer */
+    font-family: 'Playfair Display', serif;
     margin-top: auto;
 }
