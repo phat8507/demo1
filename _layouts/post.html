@@ -4,7 +4,10 @@ header_style: short
 ---
 <div class="blog-detail-container">
     <h1 class="blog-detail-title">{{ page.title }}</h1>
-    <span class="blog-meta">Posted on {{ page.date | date: "%b %-d, %Y" }}</span>
+    
+    <span class="blog-meta">
+        Posted by <strong>{{ page.author | default: "Phat Nguyen" }}</strong> on {{ page.date | date: "%b %-d, %Y" }}
+    </span>
     
     <div class="blog-content">
         {{ content }}
