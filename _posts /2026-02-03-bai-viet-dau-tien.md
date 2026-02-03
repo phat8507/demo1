@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "First Blog: Chào mừng đến với Jekyll"
+title: "First Blog: Chào mừng đến với blog cua truong phat"
 date: 2026-02-03
 ---
 
