@@ -1,41 +1,13 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Phat Nguyen</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <header>
-        <a href="index.html" class="logo">phat nguyen</a>
-        <nav>
-            <a href="index.html">home</a>
-            <a href="blog.html" class="active">blog</a>
-            <a href="about.html">about</a>
-        </nav>
-    </header>
-
-    <main>
-        <ul class="blog-list">
-            <li class="blog-item">
-                <h2><a href="blog-detail.html">— first blog</a></h2>
-                <p>đây là blog đầu tiên để thử nghiệm trên page</p>
-            </li>
-            <li class="blog-item">
-                <h2><a href="#">— second blog</a></h2>
-                <p>đây là blog thứ hai để thử nghiệm trên page</p>
-            </li>
-            <li class="blog-item">
-                <h2><a href="#">— third blog</a></h2>
-                <p>đây là blog thứ ba để thử nghiệm trên page</p>
-            </li>
-        </ul>
-    </main>
-
-    <footer>
-        <span>Copyright © 2026 Phat Nguyen; All rights reserved.</span>
-    </footer>
-</body>
-</html>
+---
+layout: default
+title: Blog
+header_style: short
+---
+<ul class="blog-list">
+    {% for post in site.posts %}
+    <li class="blog-item">
+        <h2><a href="{{ post.url | relative_url }}">— {{ post.title }}</a></h2>
+        <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    </li>
+    {% endfor %}
+</ul>
