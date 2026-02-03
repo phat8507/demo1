@@ -2,6 +2,7 @@
 layout: post
 title: "first blog"
 date: 2026-02-04
+author: Phat Nguyen
 ---
 
 đây là blog đầu tiên của web kk
