@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phat Nguyen | Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">phat nguyen</a>
+            <nav>
+                <a href="index.html" class="active">home</a>
+                <a href="blog.html">blog</a>
+                <a href="about.html">about</a>
+            </nav>
+        </header>
+
+        <main class="hero">
+            <img src="https://placehold.co/150x150" alt="Phat Nguyen Avatar" class="avatar">
+            
+            <h1>hello, I'm phat</h1>
+            <a href="blog.html" class="cta-button">read my blog</a>
+
+            <div class="date-display">
+                <p id="current-date">3/2/2026</p>
+            </div>
+        </main>
+
+        <footer>
+            Copyright © 2026 Phat Nguyen; All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        // Script nhỏ để tự động lấy ngày hiện tại
+        const dateElement = document.getElementById('current-date');
+        const today = new Date();
+        dateElement.textContent = today.toLocaleDateString('vi-VN'); 
+    </script>
+</body>
+</html>
