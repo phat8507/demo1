@@ -1,5 +1,6 @@
-/* style.css - Final Version: Full Site (Home, Blog, About, Detail) */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap');
+/* style.css - Phiên bản Font Spectral (Toàn bộ web) */
+/* Nhúng font Spectral từ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap');
 
 :root {
     --bg-color: #ffffff;
@@ -9,12 +10,14 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Playfair Display', serif;
+    /* Áp dụng Spectral cho toàn bộ website */
+    font-family: 'Spectral', serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-size: 1.1rem; /* Tăng nhẹ cỡ chữ mặc định vì Spectral hơi nhỏ hơn font cũ */
 }
 
 /* --- HEADER --- */
@@ -38,7 +41,7 @@ header.header-tall { height: 380px; }
 
 .logo {
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 500; /* Tăng độ đậm chút cho Logo */
     color: white;
     text-decoration: none;
     border-bottom: 1px solid white;
@@ -49,7 +52,7 @@ nav a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.8);
     margin-left: 30px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     transition: color 0.3s;
 }
 nav a:hover, nav a.active { color: white; text-decoration: underline; }
@@ -60,25 +63,25 @@ main { flex: 1; width: 100%; text-align: left; }
 /* --- TRANG HOME --- */
 .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; }
 .hero h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 400; }
-.hero .cta-button { padding: 10px 30px; border: 1px solid black; color: black; text-decoration: none; font-size: 1.1rem; transition: 0.3s; }
+.hero .cta-button { padding: 10px 30px; border: 1px solid black; color: black; text-decoration: none; font-size: 1.15rem; transition: 0.3s; }
 .hero .cta-button:hover { background: black; color: white; }
 
 /* --- TRANG BLOG LIST --- */
 .blog-list { list-style: none; padding: 60px 100px; max-width: 1200px; margin: 0 auto; }
 .blog-item { margin-bottom: 60px; }
-.blog-item h2 a { text-decoration: none; color: black; font-size: 2rem; font-weight: 400; }
-.blog-item p { color: #666; padding-left: 5px; margin-top: 10px; }
+.blog-item h2 a { text-decoration: none; color: black; font-size: 2.2rem; font-weight: 400; }
+.blog-item p { color: #555; padding-left: 5px; margin-top: 10px; font-style: italic; /* Font Spectral nghiêng rất đẹp cho mô tả */ }
 
-/* --- TRANG BLOG DETAIL (MỚI THÊM) --- */
+/* --- TRANG BLOG DETAIL --- */
 .blog-detail-container {
-    max-width: 800px; /* Giới hạn chiều rộng để dễ đọc */
-    margin: 0 auto;   /* Căn giữa màn hình */
-    padding: 80px 20px; /* Tạo khoảng thở xung quanh */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 20px;
 }
 
 .blog-detail-title {
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 10px;
     line-height: 1.2;
 }
@@ -86,18 +89,18 @@ main { flex: 1; width: 100%; text-align: left; }
 .blog-meta {
     color: #888;
     font-style: italic;
-    font-size: 0.95rem;
+    font-size: 1rem;
     margin-bottom: 50px;
     display: block;
-    border-bottom: 1px solid #eee; /* Đường gạch ngăn cách nhẹ */
+    border-bottom: 1px solid #eee;
     padding-bottom: 30px;
 }
 
 .blog-content p {
-    font-size: 1.2rem; /* Chữ to hơn chút cho sướng mắt */
-    line-height: 1.8;  /* Dòng thoáng */
+    font-size: 1.25rem; /* Tăng cỡ chữ đọc bài */
+    line-height: 1.8;
     margin-bottom: 30px;
-    text-align: justify; /* Căn đều 2 bên lề */
+    text-align: justify;
 }
 
 .back-link {
@@ -106,7 +109,7 @@ main { flex: 1; width: 100%; text-align: left; }
     text-decoration: none;
     color: black;
     border-bottom: 1px solid black;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     padding-bottom: 2px;
 }
 .back-link:hover { opacity: 0.6; }
@@ -119,9 +122,9 @@ main { flex: 1; width: 100%; text-align: left; }
     margin-top: -120px; position: relative; z-index: 10; margin-bottom: 40px;
 }
 .profile-pic { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); flex-shrink: 0; background-color: #ddd; }
-.profile-name-overlay { color: white; font-size: 2.2rem; font-weight: 400; margin-left: 30px; margin-bottom: 110px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); line-height: 1.2; }
+.profile-name-overlay { color: white; font-size: 2.5rem; font-weight: 400; margin-left: 30px; margin-bottom: 110px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); line-height: 1.2; }
 .about-grid { display: grid; grid-template-columns: 250px 1fr; gap: 40px; max-width: 1100px; width: 100%; margin: 0 auto; padding-left: 50px; }
-.gray-box { background: #f4f4f4; padding: 30px; font-size: 1.1rem; height: fit-content; }
+.gray-box { background: #f4f4f4; padding: 30px; font-size: 1.15rem; height: fit-content; }
 .contact-col p { margin-bottom: 10px; }
 .contact-email { font-weight: 600; word-break: break-all; }
 .social-icons { display: flex; gap: 15px; margin-top: 20px; }
@@ -129,7 +132,11 @@ main { flex: 1; width: 100%; text-align: left; }
 .social-icon-img:hover { filter: grayscale(0%); transform: scale(1.1); }
 
 /* Footer */
-footer { display: flex; justify-content: space-between; padding: 20px 50px; border-top: 1px solid black; margin-top: auto; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
+footer { 
+    display: flex; justify-content: space-between; padding: 20px 50px; border-top: 1px solid black; margin-top: auto; 
+    font-family: 'Spectral', serif; /* Đồng bộ font */
+    font-size: 0.9rem; 
+}
 
 /* Mobile */
 @media (max-width: 768px) {
