@@ -125,112 +125,89 @@ footer {
     font-family: 'Playfair Display', serif;
     margin-top: auto;
 }
-/* --- STYLE RIÊNG CHO TRANG ABOUT --- */
+/* --- STYLE RIÊNG CHO TRANG ABOUT (ĐÃ SỬA LỖI) --- */
 
-/* Wrapper để căn chỉnh vị trí Avatar đè lên Header */
+/* Wrapper: Dùng margin âm để kéo hẳn lên trên Header */
 .about-header-wrapper {
-    position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    height: 0; /* Không chiếm diện tích dòng chảy, chỉ để định vị */
-    top: -80px; /* Đẩy lên trên để đè vào vùng Header */
-    padding: 0 50px; /* Căn lề trái phải khớp với Main */
+    padding: 0 50px;
     display: flex;
     align-items: flex-end;
+    /* Kéo lên 140px để đè vào Header */
+    margin-top: -140px; 
+    /* Đảm bảo nằm đè lên trên mọi thứ */
+    position: relative;
+    z-index: 100;
+    /* Giữ khoảng cách với nội dung bên dưới */
+    margin-bottom: 40px; 
 }
 
 /* Avatar tròn */
 .profile-pic {
-    width: 220px;
-    height: 220px;
+    width: 200px; /* Chỉnh nhỏ lại chút cho cân đối */
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid white; /* Viền trắng tách biệt */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Bóng nhẹ */
-    z-index: 10;
+    border: 5px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background-color: #ddd; /* Màu nền xám nếu ảnh chưa load kịp */
 }
 
-/* Tên người dùng nằm trên hình nền tối */
+/* Tên người dùng */
 .profile-name-overlay {
     color: white;
-    font-size: 2rem;
-    font-weight: 400; /* Font mỏng giống mẫu */
-    margin-left: 20px;
-    margin-bottom: 90px; /* Đẩy lên cao nằm trong vùng tối */
-    z-index: 10;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-left: 30px;
+    margin-bottom: 50px; /* Căn chỉnh so với đáy avatar */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8); /* Bóng đen đậm hơn để dễ đọc */
 }
 
-/* Lưới bố cục 2 cột (Cột liên hệ - Cột giới thiệu) */
+/* Lưới bố cục 2 cột */
 .about-grid {
     display: grid;
-    grid-template-columns: 250px 1fr; /* Cột trái 250px, Cột phải tự giãn */
-    gap: 40px;
-    margin-top: 60px; /* Khoảng cách để né Avatar */
+    grid-template-columns: 280px 1fr; /* Cột trái rộng hơn chút */
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
 }
 
 /* Hộp xám chứa thông tin */
 .gray-box {
-    background-color: #f2f2f2; /* Màu xám nhạt giống mẫu */
+    background-color: #f4f4f4;
     padding: 30px;
-    font-family: 'Playfair Display', serif; /* Font có chân */
+    font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
     color: #333;
+    height: fit-content; /* Chiều cao vừa đủ nội dung */
 }
 
-/* Cột bên trái: Liên hệ */
-.contact-col p {
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
+/* Các phần khác giữ nguyên */
+.contact-col p { margin-bottom: 10px; line-height: 1.4; }
+.contact-email { font-weight: 600; word-break: break-all; }
+.social-icons { display: flex; gap: 15px; margin-top: 20px; }
+.social-icon-img { width: 32px; height: 32px; object-fit: contain; filter: grayscale(100%); transition: all 0.3s;}
+.social-icon-img:hover { transform: scale(1.1); filter: grayscale(0%); }
 
-.contact-email {
-    font-weight: 600;
-    word-break: break-all; /* Xuống dòng nếu email quá dài */
-}
-
-/* Các icon mạng xã hội */
-.social-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-icon-img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    transition: transform 0.2s;
-    filter: grayscale(100%); /* Làm đen trắng giống mẫu */
-}
-
-.social-icon-img:hover {
-    transform: scale(1.1);
-    filter: grayscale(0%); /* Hover vào sẽ hiện màu gốc */
-}
-
-/* Cột bên phải: Giới thiệu */
-.bio-col {
-    display: flex;
-    align-items: center; /* Căn giữa nội dung theo chiều dọc */
-}
-
-/* Responsive cho Mobile: Chuyển về 1 cột */
+/* Responsive Mobile */
 @media (max-width: 768px) {
     .about-header-wrapper {
         flex-direction: column;
         align-items: center;
-        top: -50px;
+        margin-top: -100px; /* Kéo ít hơn trên mobile */
+        text-align: center;
     }
     .profile-name-overlay {
-        color: black; /* Trên mobile tên sẽ xuống dưới nền trắng */
-        margin-bottom: 20px;
+        color: black; /* Trên mobile tên chuyển màu đen */
         margin-left: 0;
-        margin-top: 10px;
+        margin-top: 15px;
+        margin-bottom: 20px;
         text-shadow: none;
     }
     .about-grid {
         grid-template-columns: 1fr;
-        margin-top: 0;
+        padding: 0 20px;
     }
 }
