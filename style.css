@@ -1,4 +1,4 @@
-/* style.css - Final Fix: Header Gọn, About Căn Trái, Tên Đen */
+/* style.css - Phiên bản chuẩn chỉnh theo từng trang */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap');
 
 :root {
@@ -17,19 +17,28 @@ body {
     min-height: 100vh;
 }
 
-/* --- HEADER --- */
+/* --- CẤU HÌNH HEADER CHUNG --- */
 header {
-    /* Ảnh nền tối */
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('header-bg.jpg');
     background-size: cover;
     background-position: center;
-    /* GIẢM CHIỀU CAO XUỐNG 220px NHƯ HÌNH MẪU HOME */
-    height: 220px; 
-    padding: 30px 50px;
     color: white;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-start; /* Menu luôn nằm trên cùng */
+    padding: 30px 50px;
+    transition: height 0.3s ease;
+}
+
+/* Header ngắn cho trang Home */
+header.header-short {
+    height: 150px; /* Thu gọn lại */
+    align-items: center; /* Căn giữa menu theo chiều dọc */
+}
+
+/* Header cao cho trang About */
+header.header-tall {
+    height: 380px; /* Cao như hình mẫu để chứa tên */
 }
 
 .logo {
@@ -50,22 +59,21 @@ nav a {
 }
 nav a:hover, nav a.active { color: white; text-decoration: underline; }
 
-/* --- MAIN --- */
+/* --- MAIN CONTENT --- */
 main {
     flex: 1;
     width: 100%;
-    /* Căn lề trái mặc định */
-    text-align: left; 
+    text-align: left; /* Mặc định căn trái */
 }
 
-/* --- TRANG HOME --- */
+/* TRANG HOME */
 .hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 60px 20px;
+    padding: 100px 20px;
 }
 .hero h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 400; }
 .hero .cta-button {
@@ -73,33 +81,33 @@ main {
 }
 .hero .cta-button:hover { background: black; color: white; }
 
-/* --- TRANG BLOG --- */
+/* TRANG BLOG */
 .blog-list { list-style: none; padding: 60px 100px; max-width: 1200px; margin: 0 auto; }
 .blog-item { margin-bottom: 60px; }
 .blog-item h2 a { text-decoration: none; color: black; font-size: 2rem; font-weight: 400; }
 .blog-item p { color: #666; padding-left: 5px; margin-top: 10px; }
 
-/* --- TRANG ABOUT (FIX LỖI CĂN LỀ & MÀU CHỮ) --- */
+/* --- TRANG ABOUT (FIX LỖI VỊ TRÍ TÊN) --- */
 
 /* Wrapper chứa Avatar + Tên */
 .about-header-wrapper {
-    /* Đảm bảo cùng độ rộng với lưới bên dưới */
-    max-width: 1100px; 
+    max-width: 1100px;
     width: 100%;
     margin: 0 auto;
     
-    /* QUAN TRỌNG: Padding này quyết định điểm bắt đầu của lề trái */
-    padding-left: 50px;
+    /* Padding trái 50px để thẳng hàng với lưới bên dưới */
+    padding-left: 50px; 
     
     display: flex;
     flex-direction: row;
-    align-items: flex-end; /* Căn đáy để tên thẳng hàng đáy avatar */
-    justify-content: flex-start; /* Căn trái tuyệt đối */
+    align-items: flex-end; /* Căn đáy */
+    justify-content: flex-start; /* Căn trái */
     
-    margin-top: -100px; /* Kéo Avatar lên đè vào Header */
+    /* Kéo lên cao để đè vào Header */
+    margin-top: -120px; 
     position: relative;
     z-index: 10;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 /* Avatar */
@@ -109,22 +117,23 @@ main {
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    flex-shrink: 0; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    flex-shrink: 0;
     background-color: #ddd;
 }
 
-/* Tên người dùng - ĐỔI SANG MÀU ĐEN */
+/* Tên người dùng - ĐÃ CHỈNH SỬA */
 .profile-name-overlay {
-    color: black; /* YÊU CẦU CỦA BẠN: MÀU ĐEN */
+    color: white; /* Đổi lại thành màu TRẮNG */
     font-size: 2.2rem;
     font-weight: 400;
     
-    margin-left: 30px; /* Cách avatar 30px */
-    margin-bottom: 30px; /* Canh chỉnh để nằm ngang tầm mắt */
+    margin-left: 30px;
     
-    /* Bỏ bóng chữ để không bị nhòe */
-    text-shadow: none;
+    /* Đẩy tên lên cao (khoảng giữa Avatar) để nằm trên nền tối */
+    margin-bottom: 80px; 
+    
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Bóng nhẹ để nổi bật trên nền ảnh */
     line-height: 1.2;
 }
 
@@ -134,11 +143,10 @@ main {
     grid-template-columns: 250px 1fr;
     gap: 40px;
     
-    /* Độ rộng và Padding phải khớp y hệt .about-header-wrapper */
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
-    padding-left: 50px; 
+    padding-left: 50px; /* Khớp với wrapper ở trên */
 }
 
 /* Style hộp xám */
@@ -163,22 +171,20 @@ footer {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    header { padding: 20px; }
+    header.header-short, header.header-tall { height: auto; padding: 20px; min-height: 150px; }
     .about-header-wrapper { 
         flex-direction: column; 
         align-items: center; 
-        margin-top: -80px; 
-        padding-left: 0; /* Mobile thì bỏ padding trái để căn giữa */
+        margin-top: -60px; 
+        padding-left: 0; 
         text-align: center;
     }
     .profile-name-overlay { 
+        color: black; /* Mobile về lại màu đen */
         margin-left: 0; 
-        margin-top: 15px; 
         margin-bottom: 0; 
+        margin-top: 15px;
+        text-shadow: none;
     }
-    .about-grid { 
-        grid-template-columns: 1fr; 
-        padding: 0 20px; /* Padding đều 2 bên cho mobile */
-    }
-    .blog-list { padding: 40px 20px; }
+    .about-grid { grid-template-columns: 1fr; padding: 0 20px; }
 }
