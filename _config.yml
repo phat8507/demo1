@@ -1,0 +1,5 @@
+title: Phat Nguyen
+description: My Personal Blog
+url: "" # Để trống nếu dùng GitHub Pages mặc định
+markdown: kramdown
+permalink: /:title.html
