@@ -4,3 +4,9 @@ url: ""
 markdown: kramdown
 permalink: /:title.html
 baseurl: "/demo1"
+# Cấu hình phân trang
+plugins:
+  - jekyll-paginate
+
+paginate: 5              # Số bài viết hiển thị trên 1 trang (bạn có thể sửa thành 10)
+paginate_path: "/blog/page:num/"
