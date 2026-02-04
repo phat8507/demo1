@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | Phat Nguyen</title>
-    
     <link rel="stylesheet" href="https://phat8507.github.io/demo1/style.css">
 </head>
 <body>
@@ -12,18 +11,17 @@
     <header class="{% if page.header_style == 'tall' %}header-tall{% else %}header-short{% endif %}">
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
         
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
+        <div style="display: flex; align-items: center;">
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">🌙</span> Mode
+            </button>
+            
+            </div>
 
         <nav id="main-nav">
-            <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">home</a>
-            <a href="{{ '/blog/' | relative_url }}" class="{% if page.url contains '/blog' %}active{% endif %}">blog</a>
-            <a href="{{ '/about.html' | relative_url }}" class="{% if page.url contains '/about' %}active{% endif %}">about</a>
+            <a href="{{ '/' | relative_url }}">home</a>
+            <a href="{{ '/blog/' | relative_url }}">blog</a>
+            <a href="{{ '/about.html' | relative_url }}">about</a>
         </nav>
     </header>
 
@@ -32,19 +30,34 @@
     </main>
 
     <footer>
-        <span>Copyright © 2026 Phat Nguyen; All rights reserved.</span>
-        <span id="current-date">3/2/2026</span>
+        <span>© 2026 Phat Nguyen.</span>
+        <span id="current-date"></span>
     </footer>
 
     <script>
-        const dateElement = document.getElementById('current-date');
+        // Script Ngày tháng
         const today = new Date();
-        dateElement.textContent = today.toLocaleDateString('vi-VN'); 
+        document.getElementById('current-date').textContent = today.toLocaleDateString('vi-VN');
 
-        // Script đóng mở menu mobile
-        function toggleMenu() {
-            const nav = document.getElementById('main-nav');
-            nav.classList.toggle('active');
+        // SCRIPT DARK MODE
+        const body = document.body;
+        const icon = document.getElementById('theme-icon');
+        
+        // Kiểm tra bộ nhớ xem người dùng đã chọn mode nào chưa
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            icon.textContent = '☀️';
+        }
+
+        function toggleTheme() {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
         }
     </script>
 </body>
