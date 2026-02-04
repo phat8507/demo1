@@ -1,0 +1,65 @@
+---
+layout: default
+title: Blog
+header_style: short
+---
+<ul class="blog-list">
+    {% for post in paginator.posts %}
+    <li class="blog-item">
+        <h2><a href="{{ post.url | relative_url }}">— {{ post.title }}</a></h2>
+        <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}" class="page-btn">← Newer Posts</a>
+  {% else %}
+    <span class="page-btn disabled">← Newer Posts</span>
+  {% endif %}
+
+  <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}" class="page-btn">Older Posts →</a>
+  {% else %}
+    <span class="page-btn disabled">Older Posts →</span>
+  {% endif %}
+
+</div>
+{% endif %}
+
+<style>
+    /* CSS nhanh cho nút bấm đẹp */
+    .pagination {
+        text-align: center;
+        margin: 50px 0 80px 0;
+        font-family: 'Spectral', serif;
+    }
+    .page-btn {
+        display: inline-block;
+        padding: 8px 20px;
+        border: 1px solid black;
+        text-decoration: none;
+        color: black;
+        margin: 0 10px;
+        transition: 0.3s;
+    }
+    .page-btn:hover:not(.disabled) {
+        background: black;
+        color: white;
+    }
+    .page-btn.disabled {
+        border-color: #ddd;
+        color: #ddd;
+        cursor: default;
+    }
+    .page-number {
+        font-style: italic;
+        margin: 0 15px;
+        color: #555;
+    }
+</style>
