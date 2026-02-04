@@ -2,6 +2,10 @@
 layout: default
 header_style: short
 ---
+<div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
+
 <div class="blog-detail-container">
     <h1 class="blog-detail-title">{{ page.title }}</h1>
     
@@ -15,3 +19,15 @@ header_style: short
 
     <a href="{{ '/blog/' | relative_url }}" class="back-link">← Back to Blog</a>
 </div>
+
+<script>
+    // Script tính toán độ cuộn trang
+    window.onscroll = function() {myFunction()};
+
+    function myFunction() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    }
+</script>
