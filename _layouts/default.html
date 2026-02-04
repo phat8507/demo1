@@ -22,7 +22,7 @@
 
         <nav id="main-nav">
             <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">home</a>
-            <a href="{{ '/blog.html' | relative_url }}" class="{% if page.url contains '/blog' %}active{% endif %}">blog</a>
+            <a href="{{ '/blog/' | relative_url }}" class="{% if page.url contains '/blog' %}active{% endif %}">blog</a>
             <a href="{{ '/about.html' | relative_url }}" class="{% if page.url contains '/about' %}active{% endif %}">about</a>
         </nav>
     </header>
