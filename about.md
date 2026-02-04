@@ -12,7 +12,7 @@ header_style: tall
 <div class="about-grid">
     <div class="gray-box contact-col">
         <p>for contact:</p>
-        <p class="contact-email">nhtruongphat.forwork@<br>gmail.com</p>
+        <p class="contact-email">nhtruongphat.forwork@gmail.com</p>
         <br>
         <p>social:</p>
         <div class="social-icons">
@@ -26,3 +26,4 @@ header_style: tall
         <p>this is my website, where i post about what i had learn, thoughts, everything, etc.</p>
     </div>
 </div>
+
