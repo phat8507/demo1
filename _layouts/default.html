@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 </head>
 <body>
-    
     <header>
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
         
@@ -42,16 +41,13 @@
     </button>
 
     <script>
-        // Ngày tháng hiện tại
         const today = new Date();
         document.getElementById('current-date').textContent = today.toLocaleDateString('vi-VN');
 
-        // Menu Mobile Toggle
         function toggleMenu() {
             document.getElementById('main-nav').classList.toggle('active');
         }
 
-        // Xử lý nút Back to Top
         const backToTopBtn = document.getElementById("back-to-top");
         window.addEventListener('scroll', function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
