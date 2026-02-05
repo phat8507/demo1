@@ -15,7 +15,7 @@
             <nav id="main-nav">
                 <a href="{{ '/' | relative_url }}">home</a>
                 <a href="{{ '/blog/' | relative_url }}">blog</a>
-                <a href="{{ '/about.md' | relative_url }}">about</a>
+                <a href="{{ '/about.html' | relative_url }}">about</a>
             </nav>
 
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
@@ -39,15 +39,13 @@
         <span id="current-date"></span>
     </footer>
 
-    <button id="back-to-top" onclick="scrollToTop()" aria-label="Lên đầu trang">
-        ↑
-    </button>
+    <button id="back-to-top" onclick="scrollToTop()" aria-label="Lên đầu trang">↑</button>
 
     <script>
         const today = new Date();
         document.getElementById('current-date').textContent = today.toLocaleDateString('vi-VN');
 
-        // 1. SCRIPT DARK MODE
+        // Dark Mode
         const body = document.body;
         const icon = document.getElementById('theme-icon');
         if (localStorage.getItem('theme') === 'dark') {
@@ -61,12 +59,12 @@
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
-        // 2. SCRIPT MENU MOBILE
+        // Menu Mobile
         function toggleMenu() {
             document.getElementById('main-nav').classList.toggle('active');
         }
 
-        // 3. SCRIPT BACK TO TOP
+        // Back to Top
         const backToTopBtn = document.getElementById("back-to-top");
         window.addEventListener('scroll', function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
