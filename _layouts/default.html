@@ -5,21 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | Phat Nguyen</title>
     <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
-
-    <style>
-        body {
-            /* Tự động tìm đúng file ảnh header-bg.jpg */
-            background-image: url("{{ '/header-bg.jpg' | relative_url }}");
-            background-size: cover;
-            background-attachment: fixed; /* Hình đứng yên khi cuộn */
-            background-position: center;
-            background-color: #0f0f0f; /* Màu nền dự phòng */
-        }
-    </style>
 </head>
 <body>
-    
-    <header class="{% if page.header_style == 'tall' %}header-tall{% else %}header-short{% endif %}">
+    <header class="glass-panel">
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
         
         <div class="header-right">
@@ -29,8 +17,8 @@
                 <a href="{{ '/about.html' | relative_url }}">about</a>
             </nav>
 
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-                </button>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" style="display: none;">
+            </button>
             
             <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
