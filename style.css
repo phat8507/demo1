@@ -35,6 +35,44 @@ header {
     background-size: cover; background-position: center;
     color: white; display: flex; justify-content: space-between; align-items: center;
     padding: 20px 50px; position: relative; z-index: 100;
+}/* --- NÚT BACK TO TOP --- */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999; /* Đảm bảo nổi trên cùng */
+    
+    /* Giao diện */
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--text-color); /* Tự đổi màu theo Dark Mode */
+    color: var(--bg-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    
+    /* Hiệu ứng ẩn hiện */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+/* Khi có class 'show' (do JS thêm vào) thì hiện ra */
+#back-to-top.show {
+    opacity: 0.8;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Hiệu ứng khi rê chuột vào */
+#back-to-top:hover {
+    opacity: 1;
+    transform: translateY(-5px); /* Nổi lên nhẹ */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 header.header-short { height: 120px; }
 header.header-tall { height: 350px; align-items: flex-start; }
@@ -146,3 +184,4 @@ footer { padding: 30px 50px; border-top: 1px solid var(--border-color); display:
     .blog-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; align-items: center; gap: 10px; }
 }
+
