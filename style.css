@@ -1,58 +1,61 @@
-/* --- 1. CẤU HÌNH & FONT CHỮ (SPECTRAL - SERIF) --- */
+/* --- 1. CẤU HÌNH & FONT (SPECTRAL) --- */
 @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap');
 
 :root {
-    /* Màu sắc chủ đạo: Giấy cũ & Mực in */
-    --text-color: #2c2c2c; 
-    --link-color: #8b5e3c; /* Màu nâu đất vintage */
-    --bg-paper: #f9f7f1;   /* Màu nền giấy ngả vàng */
+    /* MÀU SẮC: Giấy kem sáng & Mực đậm */
+    --text-color: #1a1a1a; 
+    --link-color: #8b5e3c;
+    --bg-paper: #fcfaf5; /* Nền màu kem sáng, sạch (như trong hình) */
     
-    /* Cấu hình Kính Trong Suốt (Transparent Glass) */
-    --glass-bg: rgba(255, 255, 255, 0.4); /* Độ trong suốt cao để thấy nền */
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); /* Bóng mờ nhẹ */
-    --border-radius: 20px;
+    /* CÔNG THỨC KÍNH MỚI (Chuẩn theo hình mẫu) */
+    /* Tăng độ đục màu trắng lên 0.5 để rõ khối kính hơn */
+    --glass-bg: rgba(255, 255, 255, 0.5); 
+    /* Viền mỏng, sắc nét hơn */
+    --glass-border: rgba(255, 255, 255, 0.4); 
+    /* Độ làm mờ nền vừa phải, mịn màng */
+    --glass-blur: 20px; 
+    /* Bóng đổ rất nhẹ và tán rộng */
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06); 
+    
+    /* BO GÓC: Tròn trịa mềm mại hơn */
+    --border-radius: 24px; 
 }
 
-/* Dark Mode (Giấy đen) */
+/* Dark Mode (Tự động điều chỉnh nếu dùng) */
 body.dark-mode {
     --text-color: #e0e0e0;
     --link-color: #d4a373;
-    --bg-paper: #1a1917;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    --bg-paper: #121212;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
 
 body {
-    font-family: 'Spectral', serif; /* Font có chân */
+    font-family: 'Spectral', serif;
     background-color: var(--bg-paper);
     color: var(--text-color);
-    
-    /* Họa tiết nhiễu hạt nhẹ để tạo cảm giác giấy (Noise texture) */
-    background-image: 
-        radial-gradient(at 100% 0%, rgba(0,0,0,0.03) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(0,0,0,0.03) 0px, transparent 50%);
-    background-attachment: fixed;
-    
+    /* Đã bỏ họa tiết nhiễu hạt để nền sạch như mẫu */
+    background-image: none; 
     display: flex; flex-direction: column; min-height: 100vh;
     font-size: 1.15rem; line-height: 1.7; overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* --- 2. HEADER (Kính trong suốt) --- */
+/* --- 2. HEADER (Áp dụng kính đồng bộ) --- */
 header {
-    width: 90%; max-width: 1200px; margin: 20px auto 0 auto;
-    border-radius: 50px;
+    width: 90%; max-width: 1200px; 
+    margin: 20px auto 0 auto;
     
-    /* Hiệu ứng kính */
+    /* Hiệu ứng kính chuẩn */
     background: var(--glass-bg);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
+    border-radius: var(--border-radius);
     
     display: flex; justify-content: space-between; align-items: center;
     padding: 15px 30px; position: sticky; top: 20px; z-index: 1000;
@@ -68,7 +71,7 @@ nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; 
 .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--text-color); }
 .theme-toggle { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.7; }
 
-/* --- 3. TRANG HOME (Hero) --- */
+/* --- 3. TRANG HOME --- */
 .hero {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 100px 20px; min-height: 60vh;
@@ -79,69 +82,69 @@ nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; 
 }
 
 .cta-button {
-    padding: 12px 35px; border-radius: 50px;
+    padding: 12px 35px; border-radius: var(--border-radius);
     background: var(--text-color); color: var(--bg-paper) !important;
     font-weight: 500; font-size: 1.2rem; margin-top: 25px; font-style: italic;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: none; transform: scale(1);
 }
 .cta-button:hover { transform: scale(1.05); background: var(--link-color); }
 
-/* --- 4. TRANG ABOUT (Container chính) --- */
+/* --- 4. TRANG ABOUT --- */
 .about-container {
     max-width: 1100px; margin: 60px auto; padding: 0 20px;
     display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: start;
 }
 .about-avatar { 
     width: 100%; aspect-ratio: 1/1; object-fit: cover;
-    border-radius: 200px 200px 20px 20px; /* Bo góc kiểu vòm cửa sổ cổ điển */
-    border: 5px solid rgba(255,255,255,0.5);
+    border-radius: 200px 200px 20px 20px; 
+    border: 4px solid rgba(255,255,255,0.5);
     box-shadow: var(--glass-shadow); margin-bottom: 25px; 
 }
 
-/* HỘP KÍNH TRONG SUỐT (Gray Box) */
+/* HỘP KÍNH ABOUT (Áp dụng kính đồng bộ) */
 .gray-box {
     background: var(--glass-bg);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    padding: 45px; border-radius: var(--border-radius);
+    border-radius: var(--border-radius);
+    padding: 45px;
 }
 
-/* Nút Social Icons */
 .about-social { display: flex; justify-content: center; gap: 15px; }
 .social-btn { 
     width: 44px; height: 44px; border-radius: 50%; 
-    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6);
-    display: flex; align-items: center; justify-content: center; transition: 0.3s;
-    color: var(--text-color);
+    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center; transition: 0.3s; color: var(--text-color);
 }
 .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
 .social-btn:hover { transform: translateY(-3px); background: var(--link-color); color: #fff; border-color: transparent;}
 
-/* Danh sách kỹ năng (Grid 2 cột) */
+/* Danh sách kỹ năng */
 .about-lists-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
 
 .list-section h3 { 
     font-size: 1.5rem; font-weight: 500; font-style: italic; margin-bottom: 20px;
-    color: var(--link-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; display: inline-block; width: 100%;
+    color: var(--link-color); border-bottom: 1px solid rgba(0,0,0,0.08); padding-bottom: 10px; display: inline-block; width: 100%;
 }
-
 .vertical-list { list-style: none; padding: 0; }
 .vertical-list li {
     padding: 10px 0; margin-bottom: 5px;
-    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
     font-size: 1.1rem; display: flex; align-items: center;
 }
 .vertical-list li:last-child { border-bottom: none; }
 .vertical-list li::before { content: "•"; color: var(--link-color); font-size: 1.5rem; margin-right: 12px; line-height: 0; }
 
-/* --- 5. BLOG (Thẻ bài viết) --- */
+/* --- 5. BLOG CARDS (Áp dụng kính đồng bộ) --- */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 60px auto; padding: 0 20px; }
 .blog-card { 
     background: var(--glass-bg);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border); padding: 30px; border-radius: var(--border-radius);
-    transition: transform 0.4s; box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--border-radius);
+    padding: 30px; transition: transform 0.4s; 
 }
 .blog-card:hover { transform: translateY(-8px); border-color: var(--link-color); }
 .blog-card h2 a { font-weight: 600; font-size: 1.5rem; }
@@ -151,8 +154,8 @@ nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; 
 .blog-detail-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
 .blog-detail-title { font-size: 3.2rem; font-weight: 500; font-style: italic; margin-bottom: 10px; line-height: 1.2; }
 .blog-meta { color: #888; font-style: italic; margin-bottom: 30px; display: block; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 20px;}
-.blog-content img { max-width: 100%; border-radius: 4px; margin: 30px auto; display: block; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.back-link { padding: 8px 20px; border-radius: 30px; border: 1px solid var(--text-color); display: inline-block; margin-top: 40px; font-weight: 500; font-style: italic; transition: 0.3s;}
+.blog-content img { max-width: 100%; border-radius: var(--border-radius); margin: 30px auto; display: block; box-shadow: var(--glass-shadow); }
+.back-link { padding: 8px 20px; border-radius: var(--border-radius); border: 1px solid var(--text-color); display: inline-block; margin-top: 40px; font-weight: 500; font-style: italic; transition: 0.3s;}
 .back-link:hover { background: var(--text-color); color: var(--bg-paper); }
 
 /* --- 6. FOOTER --- */
@@ -168,15 +171,15 @@ footer { margin-top: auto; padding: 40px; text-align: center; font-size: 1rem; o
 }
 #back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE */
 @media (max-width: 768px) {
     header { width: 95%; padding: 15px 20px; }
     .menu-toggle { display: block; }
     nav { 
         display: none; position: absolute; top: 120%; left: 0; width: 100%; 
-        background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); 
-        padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        flex-direction: column; text-align: center; border: 1px solid rgba(0,0,0,0.05);
+        background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+        padding: 20px; border-radius: var(--border-radius); box-shadow: var(--glass-shadow);
+        flex-direction: column; text-align: center; border: 1px solid var(--glass-border);
     }
     nav.active { display: flex; }
     .hero h1 { font-size: 3rem; }
