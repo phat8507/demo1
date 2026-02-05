@@ -26,37 +26,40 @@ header_style: short
     </div>
 
     <div class="about-content">
-        <h1>Nguyen Huu Truong Phat</h1>
-        <span class="about-role">Student / Editor / Learner</span>
-
-        <p>this is my website, where i post about what i had learn, thoughts, everything, etc.</p>
-
-        <div class="skill-section">
-            <h3>My Interests & Skills</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">💻 Technology</span>
-                <span class="skill-tag">🧠 Neuroscience</span>
-                <span class="skill-tag">📚 Learning</span>
-                <span class="skill-tag">🇬🇧 English (IELTS 7.5)</span>
-                
-                <span class="skill-tag">📊 Data Science</span>
-                <span class="skill-tag">💰 Economics</span>
-                <span class="skill-tag">🇨🇳 Chinese (HSK)</span>
-                <span class="skill-tag">📸 Photography</span>
-                <span class="skill-tag">🎬 Video Editing</span>
-            </div>
-        </div>
-
-        <div class="skill-section">
-            <h3>Education & Journey</h3>
+        
+        <div class="gray-box" style="padding: 40px; border-radius: 12px;">
             
-            <div class="timeline-item">
-                <div class="timeline-year">2025 - Present</div>
-                <div class="timeline-title">Banking University HCMC</div>
-                <div class="timeline-desc">Major: Business Administration (E-Business).</div>
+            <h1>Nguyen Huu Truong Phat</h1>
+            <span class="about-role">Student / Editor / Learner</span>
+
+            <p style="margin-bottom: 30px;">this is my website, where i post about what i had learn, thoughts, everything, etc.</p>
+
+            <div class="skill-section">
+                <h3>My Interests & Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag"> Technology</span>
+                    <span class="skill-tag"> Neuroscience</span>
+                    <span class="skill-tag"> Learning</span>
+                    <span class="skill-tag">🇬🇧 English (IELTS 7.5)</span>
+                    <span class="skill-tag"> Data Science</span>
+                    <span class="skill-tag"> Economics</span>
+                    <span class="skill-tag">🇨🇳 Chinese (HSK)</span>
+                    <span class="skill-tag"> Photography</span>
+                    <span class="skill-tag"> Video Editing</span>
+                </div>
             </div>
 
-        </div>
+            <div class="skill-section">
+                <h3>Education & Journey</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2025 - Present</div>
+                    <div class="timeline-title">Banking University HCMC</div>
+                    <div class="timeline-desc">Major: Business Administration (E-Business).</div>
+                </div>
 
-    </div>
+                </div>
+            </div>
+
+        </div> </div>
 </div>
