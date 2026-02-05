@@ -4,20 +4,22 @@ layout: default
 
 <article class="blog-detail-container">
     <div class="blog-detail-glass-box glass-panel">
-        <header>
+        
+        <div class="post-header">
             <h1 class="blog-detail-title">{{ page.title }}</h1>
-            <span class="blog-meta">
-                Published on {{ page.date | date: "%B %d, %Y" }}
-                {% if page.author %} by {{ page.author }}{% endif %}
-            </span>
-        </header>
+            
+            <p class="blog-meta">
+                Posted by <span style="color: #fff; font-weight: 500;">{{ page.author | default: "Phat Nguyen" }}</span> 
+                on {{ page.date | date: "%B %d, %Y" }}
+            </p>
+        </div>
 
         <div class="blog-content">
             {{ content }}
         </div>
 
-        <footer>
+        <div style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
             <a href="{{ '/blog/' | relative_url }}" class="back-link">← Back to Blog</a>
-        </footer>
+        </div>
     </div>
 </article>
