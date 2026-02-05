@@ -4,18 +4,18 @@
 :root {
     /* MÀU SẮC (NIGHT MODE) */
     --text-color: #ffffff;
-    --text-dim: #dddddd; /* Màu chữ phụ sáng hơn chút cho dễ đọc trên kính tối */
-    --link-color: #ffcc00;
+    --text-dim: #cccccc;   
+    --link-color: #ffcc00; 
     
-    /* CÔNG THỨC KÍNH TỐI (DARK GLASS) */
-    --glass-bg: rgba(20, 20, 20, 0.75); /* Tăng độ tối lên một chút để chữ dễ đọc hơn */
+    /* CÔNG THỨC KÍNH (DARK GLASS) */
+    --glass-bg: rgba(20, 20, 20, 0.75); 
     --glass-border: 1px solid rgba(255, 255, 255, 0.15);
-    --glass-blur: 20px; /* Độ mờ hậu cảnh của tấm kính */
+    --glass-blur: 20px; 
     --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     --border-radius: 20px;
     
-    /* ĐỘ MỜ HÌNH NỀN CHÍNH (Yêu cầu 1) */
-    --bg-blur-amount: 8px; /* Khoảng 20-30% cảm giác mờ */
+    /* ĐỘ MỜ HÌNH NỀN CHÍNH */
+    --bg-blur-amount: 8px; 
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
@@ -25,15 +25,15 @@ body {
     color: var(--text-color);
     display: flex; flex-direction: column; min-height: 100vh;
     font-size: 1.15rem; line-height: 1.7; overflow-x: hidden;
-    position: relative; /* Quan trọng để định vị lớp nền mờ */
+    position: relative; 
 }
 
-/* --- XỬ LÝ HÌNH NỀN MỜ (Yêu cầu 1) --- */
+/* XỬ LÝ HÌNH NỀN MỜ */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    z-index: -1; /* Nằm sau nội dung */
+    z-index: -1; 
     
     /* Hình nền */
     background-image: url('https://phat8507.github.io/demo1/header-bg.jpg');
@@ -43,12 +43,12 @@ body::before {
     
     /* Hiệu ứng làm mờ */
     filter: blur(var(--bg-blur-amount));
-    transform: scale(1.05); /* Phóng to nhẹ để tránh bị hở viền mờ */
+    transform: scale(1.05); 
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* --- CLASS DÙNG CHUNG CHO HIỆU ỨNG KÍNH (REUSABLE CLASS) --- */
+/* CLASS DÙNG CHUNG CHO HIỆU ỨNG KÍNH */
 .glass-panel {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -57,7 +57,7 @@ a { text-decoration: none; color: inherit; }
     border-radius: var(--border-radius);
 }
 
-/* --- 2. HEADER --- */
+/* --- 2. HEADER (MENU) --- */
 header {
     width: 90%; max-width: 1200px; 
     margin: 20px auto 0 auto;
@@ -74,18 +74,16 @@ nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; 
 
 .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--text-color); }
 
-/* --- 3. TRANG HOME & HERO BOX (Yêu cầu 2) --- */
+/* --- 3. TRANG HOME --- */
 .hero {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 100px 20px; min-height: 50vh;
     position: relative; z-index: 2;
 }
 
-/* Khung kính cho chữ Hello */
 .hero-glass-box {
     padding: 50px 60px;
     display: flex; flex-direction: column; align-items: center;
-    /* Kính ở đây nên trong hơn một chút để làm nổi bật nút */
     background: rgba(20, 20, 20, 0.6); 
 }
 
@@ -120,8 +118,6 @@ nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; 
 }
 
 .gray-box {
-    /* Kính đã được áp dụng qua class .glass-panel ở các phần khác, 
-       nhưng ở about.md bạn đang dùng class này, nên ta giữ lại định nghĩa ở đây để tương thích */
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
     border: var(--glass-border);
@@ -155,10 +151,9 @@ nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; 
 .vertical-list li::before { content: "•"; color: var(--link-color); font-size: 1.5rem; margin-right: 12px; line-height: 0; }
 .vertical-list li strong { color: #fff; margin-right: 5px; } 
 
-/* --- 5. BLOG CARDS & DETAIL (Yêu cầu 3) --- */
+/* --- 5. BLOG CARDS --- */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 60px auto; padding: 0 20px; position: relative; z-index: 2;}
 .blog-card { 
-    /* Kính đã áp dụng qua class .glass-panel nếu bạn thêm vào file blog listing */
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
     border: var(--glass-border);
@@ -171,49 +166,40 @@ nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; 
 .blog-card p { color: var(--text-dim); }
 .read-more { color: var(--link-color); font-weight: 600; font-style: italic; text-decoration: underline; }
 
-/* CHI TIẾT BÀI VIẾT - HỘP KÍNH LỚN */
+/* --- 6. CHI TIẾT BÀI VIẾT (ĐÃ SỬA CHUẨN) --- */
 .blog-detail-container { max-width: 900px; margin: 60px auto; padding: 0 20px; position: relative; z-index: 2;}
 
-.blog-detail-glass-box {
-    padding: 50px; /* Khoảng cách đệm rộng rãi cho dễ đọc */
+.blog-detail-glass-box { padding: 50px; }
+
+/* Phần Header bài viết (Mới) */
+.post-header {
+    text-align: center; /* Căn giữa tiêu đề và meta */
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 20px;
 }
 
-.blog-detail-title { font-size: 3.2rem; font-weight: 500; font-style: italic; margin-bottom: 15px; line-height: 1.2; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-.blog-meta { color: var(--text-dim); font-style: italic; margin-bottom: 30px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; font-size: 1rem;}
-.blog-content { color: #e0e0e0; font-size: 1.2rem; line-height: 1.8; } /* Tăng cỡ chữ và khoảng cách dòng cho dễ đọc */
+.blog-detail-title { 
+    font-size: 3.5rem; font-weight: 500; font-style: italic; 
+    margin-bottom: 15px; line-height: 1.1; color: #fff; 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+}
+
+.blog-meta { 
+    color: var(--text-dim); 
+    font-style: italic; 
+    font-size: 1.1rem; 
+    /* Không còn border-bottom ở đây nữa vì đã có ở .post-header */
+}
+
+.blog-content { color: #e0e0e0; font-size: 1.2rem; line-height: 1.8; }
 .blog-content p { margin-bottom: 25px; }
 .blog-content img { max-width: 100%; border-radius: var(--border-radius); margin: 30px auto; display: block; box-shadow: var(--glass-shadow); border: 1px solid rgba(255,255,255,0.1); }
-.back-link { padding: 10px 25px; border-radius: var(--border-radius); border: 1px solid var(--text-color); display: inline-block; margin-top: 40px; font-weight: 500; font-style: italic; transition: 0.3s; color: #fff;}
+
+.back-link { padding: 10px 25px; border-radius: var(--border-radius); border: 1px solid var(--text-color); display: inline-block; font-weight: 500; font-style: italic; transition: 0.3s; color: #fff;}
 .back-link:hover { background: #fff; color: #000; border-color: #fff;}
 
-/* --- 6. FOOTER --- */
+/* --- 7. FOOTER --- */
 footer { margin-top: auto; padding: 40px; text-align: center; font-size: 1rem; opacity: 0.7; font-style: italic; color: var(--text-dim); position: relative; z-index: 2;}
 
 #back-to-top {
-    position: fixed; bottom: 30px; right: 30px; z-index: 999;
-    width: 45px; height: 45px; border: none; border-radius: 12px;
-    background: var(--link-color); color: #000; font-size: 1.2rem; cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
-    opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s;
-}
-#back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-
-/* MOBILE */
-@media (max-width: 768px) {
-    header { width: 95%; padding: 15px 20px; }
-    .menu-toggle { display: block; filter: invert(1); }
-    nav { 
-        display: none; position: absolute; top: 120%; left: 0; width: 100%; 
-        background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(var(--glass-blur));
-        padding: 20px; border-radius: var(--border-radius); box-shadow: var(--glass-shadow);
-        flex-direction: column; text-align: center; border: 1px solid rgba(255,255,255,0.1);
-    }
-    nav.active { display: flex; }
-    .hero h1 { font-size: 3rem; }
-    .hero-glass-box { padding: 30px 20px; width: 100%; } /* Mobile: hộp hero nhỏ lại */
-    .about-container { grid-template-columns: 1fr; }
-    .about-lists-grid { grid-template-columns: 1fr !important; gap: 20px; }
-    .about-avatar { width: 250px; margin: 0 auto 25px auto; display: block; }
-    .blog-detail-glass-box { padding: 30px 20px; } /* Mobile: padding bài viết nhỏ lại */
-    .blog-detail-title { font-size: 2.2rem; }
-}
