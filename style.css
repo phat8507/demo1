@@ -86,3 +86,32 @@ footer { padding: 30px 50px; border-top: 1px solid var(--border-color); display:
     .hero h1 { font-size: 2.5rem; }
     footer { flex-direction: column; align-items: center; gap: 10px; }
 }
+/* --- STYLE CHO LIST DỌC (Trang About) --- */
+.list-section {
+    margin-top: 30px;
+}
+.list-section h3 {
+    font-size: 1.3rem; margin-bottom: 15px; 
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px; display: inline-block;
+}
+
+/* Dạng danh sách thẳng hàng */
+.vertical-list {
+    list-style: none; /* Bỏ chấm tròn mặc định */
+    padding: 0;
+}
+.vertical-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color); /* Gạch đứt nét ngăn cách */
+    font-size: 1.05rem;
+    display: flex; align-items: center; gap: 10px;
+}
+.vertical-list li:last-child { border-bottom: none; }
+
+/* Icon hoặc dấu gạch đầu dòng */
+.vertical-list li::before {
+    content: "▪"; /* Dấu vuông nhỏ đầu dòng */
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
