@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 </head>
 <body>
-    <header class="glass-panel">
+    
+    <header>
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
         
         <div class="header-right">
@@ -16,11 +17,8 @@
                 <a href="{{ '/blog/' | relative_url }}">blog</a>
                 <a href="{{ '/about.html' | relative_url }}">about</a>
             </nav>
-
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" style="display: none;">
-            </button>
             
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 12H21" stroke-linecap="round"/><path d="M3 6H21" stroke-linecap="round"/><path d="M3 18H21" stroke-linecap="round"/>
                 </svg>
@@ -37,18 +35,23 @@
         <span id="current-date"></span>
     </footer>
 
-    <button id="back-to-top" onclick="scrollToTop()" aria-label="Lên đầu trang">↑</button>
+    <button id="back-to-top" onclick="scrollToTop()" aria-label="Lên đầu trang">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
 
     <script>
+        // Ngày tháng hiện tại
         const today = new Date();
         document.getElementById('current-date').textContent = today.toLocaleDateString('vi-VN');
 
-        // Menu Mobile
+        // Menu Mobile Toggle
         function toggleMenu() {
             document.getElementById('main-nav').classList.toggle('active');
         }
 
-        // Back to Top
+        // Xử lý nút Back to Top
         const backToTopBtn = document.getElementById("back-to-top");
         window.addEventListener('scroll', function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
