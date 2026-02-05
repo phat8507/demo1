@@ -1,181 +1,186 @@
-/* --- 1. CẤU HÌNH & FONT (SPECTRAL - SERIF) --- */
+/* --- 1. CẤU HÌNH & FONT CHỮ (SPECTRAL - SERIF) --- */
 @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap');
 
 :root {
-    --text-color: #1d1d1f;
-    --link-color: #0071e3;
-    --glass-bg: rgba(255, 255, 255, 0.65); /* Màu kính trong suốt */
-    --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-    --border-radius: 24px;
+    /* Màu sắc chủ đạo: Giấy cũ & Mực in */
+    --text-color: #2c2c2c; 
+    --link-color: #8b5e3c; /* Màu nâu đất vintage */
+    --bg-paper: #f9f7f1;   /* Màu nền giấy ngả vàng */
+    
+    /* Cấu hình Kính Trong Suốt (Transparent Glass) */
+    --glass-bg: rgba(255, 255, 255, 0.4); /* Độ trong suốt cao để thấy nền */
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); /* Bóng mờ nhẹ */
+    --border-radius: 20px;
 }
 
+/* Dark Mode (Giấy đen) */
 body.dark-mode {
-    --text-color: #f5f5f7;
-    --glass-bg: rgba(30, 30, 30, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --text-color: #e0e0e0;
+    --link-color: #d4a373;
+    --bg-paper: #1a1917;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
 
 body {
-    font-family: 'Spectral', serif; /* Font có chân sang trọng */
+    font-family: 'Spectral', serif; /* Font có chân */
+    background-color: var(--bg-paper);
     color: var(--text-color);
+    
+    /* Họa tiết nhiễu hạt nhẹ để tạo cảm giác giấy (Noise texture) */
+    background-image: 
+        radial-gradient(at 100% 0%, rgba(0,0,0,0.03) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(0,0,0,0.03) 0px, transparent 50%);
+    background-attachment: fixed;
+    
     display: flex; flex-direction: column; min-height: 100vh;
     font-size: 1.15rem; line-height: 1.7; overflow-x: hidden;
-    
-    /* HÌNH NỀN MESH GRADIENT (iOS 26 Style) */
-    background-color: #fbfbfd;
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(142, 197, 252, 0.3) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(224, 195, 252, 0.3) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(142, 252, 200, 0.2) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(252, 238, 142, 0.2) 0px, transparent 50%);
-    background-attachment: fixed; background-size: cover;
-}
-
-body.dark-mode {
-    background-color: #000000;
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(26, 41, 128, 0.5) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(217, 31, 217, 0.3) 0px, transparent 50%);
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* --- 2. HEADER (FLOATING ISLAND) --- */
+/* --- 2. HEADER (Kính trong suốt) --- */
 header {
     width: 90%; max-width: 1200px; margin: 20px auto 0 auto;
-    border-radius: 50px; /* Bo tròn viên thuốc */
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border-radius: 50px;
+    
+    /* Hiệu ứng kính */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    
     display: flex; justify-content: space-between; align-items: center;
     padding: 15px 30px; position: sticky; top: 20px; z-index: 1000;
 }
 header.header-short, header.header-tall { height: auto; }
-body.dark-mode header { background: rgba(40, 40, 40, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); }
 
-.logo { font-size: 1.5rem; font-weight: 700; font-style: italic; }
+.logo { font-size: 1.6rem; font-weight: 700; font-style: italic; color: var(--text-color); }
 .header-right { display: flex; align-items: center; gap: 20px; }
 
-nav a { font-weight: 500; font-size: 1.1rem; opacity: 0.8; transition: 0.2s; font-style: italic; }
+nav a { font-weight: 500; font-size: 1.1rem; opacity: 0.7; font-style: italic; color: var(--text-color); transition: 0.2s; }
 nav a:hover { opacity: 1; color: var(--link-color); text-decoration: underline; }
 
 .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--text-color); }
-.theme-toggle { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.theme-toggle { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.7; }
 
-/* --- 3. TRANG HOME (HERO) --- */
+/* --- 3. TRANG HOME (Hero) --- */
 .hero {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 100px 20px; min-height: 60vh;
 }
 .hero h1 { 
-    font-size: 5rem; margin-bottom: 10px; font-weight: 400; font-style: italic;
-    background: -webkit-linear-gradient(45deg, #090979, #00d4ff);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-size: 5rem; margin-bottom: 15px; font-weight: 400; font-style: italic;
+    color: var(--text-color);
 }
-body.dark-mode .hero h1 { background: -webkit-linear-gradient(45deg, #f5f7fa, #c3cfe2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
 .cta-button {
     padding: 12px 35px; border-radius: 50px;
-    background: var(--text-color); color: var(--glass-bg) !important;
+    background: var(--text-color); color: var(--bg-paper) !important;
     font-weight: 500; font-size: 1.2rem; margin-top: 25px; font-style: italic;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: none; transform: scale(1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: none; transform: scale(1);
 }
-.cta-button:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+.cta-button:hover { transform: scale(1.05); background: var(--link-color); }
 
-/* --- 4. TRANG ABOUT --- */
+/* --- 4. TRANG ABOUT (Container chính) --- */
 .about-container {
     max-width: 1100px; margin: 60px auto; padding: 0 20px;
     display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: start;
 }
-.about-avatar { width: 100%; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); margin-bottom: 25px; aspect-ratio: 1/1; object-fit: cover; }
+.about-avatar { 
+    width: 100%; aspect-ratio: 1/1; object-fit: cover;
+    border-radius: 200px 200px 20px 20px; /* Bo góc kiểu vòm cửa sổ cổ điển */
+    border: 5px solid rgba(255,255,255,0.5);
+    box-shadow: var(--glass-shadow); margin-bottom: 25px; 
+}
 
-/* HỘP KÍNH (Glass Box) */
+/* HỘP KÍNH TRONG SUỐT (Gray Box) */
 .gray-box {
     background: var(--glass-bg);
-    backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
-    padding: 40px; border-radius: var(--border-radius);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 45px; border-radius: var(--border-radius);
 }
 
-/* NÚT SOCIAL (Đã sửa lỗi icon đen) */
-.about-social { display: flex; justify-content: center; gap: 12px; }
+/* Nút Social Icons */
+.about-social { display: flex; justify-content: center; gap: 15px; }
 .social-btn { 
     width: 44px; height: 44px; border-radius: 50%; 
-    background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6);
     display: flex; align-items: center; justify-content: center; transition: 0.3s;
-    color: var(--text-color); /* Quan trọng cho icon Fill */
+    color: var(--text-color);
 }
-body.dark-mode .social-btn { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1); }
-.social-btn svg { width: 22px; height: 22px; fill: currentColor; } /* Icon sẽ nhận màu từ text-color */
-.social-btn:hover { transform: translateY(-5px) scale(1.1); background: var(--link-color); color: white; border-color: transparent;}
+.social-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.social-btn:hover { transform: translateY(-3px); background: var(--link-color); color: #fff; border-color: transparent;}
 
-/* STYLE DANH SÁCH (Cột dọc) */
+/* Danh sách kỹ năng (Grid 2 cột) */
 .about-lists-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
 
 .list-section h3 { 
-    font-size: 1.6rem; font-weight: 500; font-style: italic; margin-bottom: 20px;
-    background: linear-gradient(to right, var(--text-color), transparent);
-    -webkit-background-clip: text; color: transparent; opacity: 0.8;
+    font-size: 1.5rem; font-weight: 500; font-style: italic; margin-bottom: 20px;
+    color: var(--link-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; display: inline-block; width: 100%;
 }
 
 .vertical-list { list-style: none; padding: 0; }
 .vertical-list li {
-    padding: 12px 15px; margin-bottom: 8px;
-    background: rgba(255,255,255,0.3); border-radius: 12px;
-    border: none; font-size: 1.1rem; display: flex; align-items: center;
+    padding: 10px 0; margin-bottom: 5px;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    font-size: 1.1rem; display: flex; align-items: center;
 }
-body.dark-mode .vertical-list li { background: rgba(255,255,255,0.05); }
-.vertical-list li::before { content: "✦"; color: var(--link-color); font-size: 0.8rem; margin-right: 10px;}
+.vertical-list li:last-child { border-bottom: none; }
+.vertical-list li::before { content: "•"; color: var(--link-color); font-size: 1.5rem; margin-right: 12px; line-height: 0; }
 
-/* --- 5. BLOG CARDS --- */
+/* --- 5. BLOG (Thẻ bài viết) --- */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 60px auto; padding: 0 20px; }
 .blog-card { 
     background: var(--glass-bg);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border); padding: 30px; border-radius: var(--border-radius);
-    transition: transform 0.4s;
+    transition: transform 0.4s; box-shadow: var(--glass-shadow);
 }
-.blog-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-.blog-card h2 a { font-weight: 600; font-size: 1.6rem; }
-.read-more { color: var(--link-color); font-weight: 600; font-style: italic; }
+.blog-card:hover { transform: translateY(-8px); border-color: var(--link-color); }
+.blog-card h2 a { font-weight: 600; font-size: 1.5rem; }
+.read-more { color: var(--link-color); font-weight: 600; font-style: italic; text-decoration: underline; }
 
-/* CHI TIẾT BÀI VIẾT */
+/* Chi tiết bài viết */
 .blog-detail-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-.blog-detail-title { font-size: 3.5rem; font-weight: 500; font-style: italic; margin-bottom: 10px; line-height: 1.1; }
-.blog-meta { color: var(--text-color); opacity: 0.6; font-style: italic; margin-bottom: 30px; display: block; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px;}
-.blog-content img { max-width: 100%; border-radius: 16px; margin: 30px auto; display: block; }
-.back-link { padding: 10px 20px; border-radius: 30px; background: rgba(0,0,0,0.05); display: inline-block; margin-top: 40px; font-weight: 600; font-style: italic; }
+.blog-detail-title { font-size: 3.2rem; font-weight: 500; font-style: italic; margin-bottom: 10px; line-height: 1.2; }
+.blog-meta { color: #888; font-style: italic; margin-bottom: 30px; display: block; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 20px;}
+.blog-content img { max-width: 100%; border-radius: 4px; margin: 30px auto; display: block; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.back-link { padding: 8px 20px; border-radius: 30px; border: 1px solid var(--text-color); display: inline-block; margin-top: 40px; font-weight: 500; font-style: italic; transition: 0.3s;}
+.back-link:hover { background: var(--text-color); color: var(--bg-paper); }
 
 /* --- 6. FOOTER --- */
-footer { margin-top: auto; padding: 40px; text-align: center; font-size: 1rem; opacity: 0.7; background: transparent; border: none; font-style: italic; }
+footer { margin-top: auto; padding: 40px; text-align: center; font-size: 1rem; opacity: 0.6; font-style: italic; }
 
 #back-to-top {
     position: fixed; bottom: 30px; right: 30px; z-index: 999;
-    width: 50px; height: 50px; border: none; border-radius: 50%;
-    background: var(--text-color); color: var(--glass-bg);
-    font-size: 1.5rem; font-weight: bold; cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    width: 45px; height: 45px; border: none; border-radius: 50%;
+    background: var(--link-color); color: #fff;
+    font-size: 1.2rem; cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s;
 }
 #back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
-/* MOBILE */
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
     header { width: 95%; padding: 15px 20px; }
     .menu-toggle { display: block; }
     nav { 
         display: none; position: absolute; top: 120%; left: 0; width: 100%; 
-        background: var(--glass-bg); backdrop-filter: blur(20px); 
+        background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); 
         padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        flex-direction: column; text-align: center; 
+        flex-direction: column; text-align: center; border: 1px solid rgba(0,0,0,0.05);
     }
     nav.active { display: flex; }
     .hero h1 { font-size: 3rem; }
     .about-container { grid-template-columns: 1fr; }
     .about-lists-grid { grid-template-columns: 1fr !important; gap: 20px; }
+    .about-avatar { border-radius: 50%; border-width: 3px; }
 }
