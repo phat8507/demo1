@@ -8,7 +8,7 @@ header_style: short
     {% for post in paginator.posts %}
     <div class="blog-card">
         <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-        <div class="blog-card-meta">{{ post.date | date: "%b %d, %Y" }}</div>
+        <div style="font-size: 0.85rem; color:#888; margin-bottom:10px;">{{ post.date | date: "%b %d, %Y" }}</div>
         
         <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
         
@@ -18,15 +18,15 @@ header_style: short
 </div>
 
 {% if paginator.total_pages > 1 %}
-<div class="pagination">
+<div style="text-align:center; margin-bottom:80px;">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url }}" class="page-btn">← Newer</a>
+    <a href="{{ paginator.previous_page_path | relative_url }}" style="padding:8px 16px; border:1px solid black; margin:0 5px;">← Newer</a>
   {% endif %}
-
-  <span style="margin: 0 10px; font-style: italic;">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  
+  <span style="font-style:italic; margin:0 10px;">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
 
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url }}" class="page-btn">Older →</a>
+    <a href="{{ paginator.next_page_path | relative_url }}" style="padding:8px 16px; border:1px solid black; margin:0 5px;">Older →</a>
   {% endif %}
 </div>
 {% endif %}
