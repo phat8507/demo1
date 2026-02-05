@@ -51,7 +51,7 @@ nav a:hover, nav a.active { color: white; text-decoration: underline; }
 }
 .theme-toggle:hover { background: rgba(255,255,255,0.3); }
 
-/* --- 3. TRANG ABOUT (CODE MỚI ĐÃ SỬA) --- */
+/* --- 3. TRANG ABOUT --- */
 .about-header-wrapper {
     max-width: 1100px; margin: -100px auto 40px auto;
     padding: 0 50px; display: flex; align-items: flex-end;
@@ -70,41 +70,52 @@ nav a:hover, nav a.active { color: white; text-decoration: underline; }
     line-height: 1; font-weight: 500;
 }
 
-.about-grid {
-    display: grid; grid-template-columns: 300px 1fr; gap: 50px;
-    max-width: 1100px; margin: 0 auto 60px auto; padding: 0 50px;
+.about-container {
+    max-width: 1000px; margin: 50px auto; padding: 0 20px;
+    display: grid; grid-template-columns: 350px 1fr; gap: 60px; align-items: start;
 }
-
-.gray-box {
-    background: var(--card-bg); padding: 30px; border: 1px solid var(--border-color);
-    border-radius: 8px; height: fit-content;
+.about-sidebar { text-align: center; position: sticky; top: 100px; }
+.about-avatar {
+    width: 100%; height: auto; border-radius: 12px;
+    filter: grayscale(20%); transition: 0.3s;
+    box-shadow: 10px 10px 0px var(--text-color);
 }
+.about-avatar:hover { filter: grayscale(0%); transform: translate(-5px, -5px); box-shadow: 15px 15px 0px var(--text-color); }
+.about-content h1 { font-size: 2.5rem; margin-bottom: 10px; }
+.about-role { font-family: sans-serif; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: var(--meta-color); margin-bottom: 30px; display: block; }
 
-.contact-email { word-break: break-all; font-weight: 600; display: block; margin-bottom: 20px;}
-
-/* --- ICON SOCIAL SVG MỚI (Icon nét căng, tự đổi màu) --- */
+/* ICON SOCIAL SVG */
 .about-social { margin-top: 25px; display: flex; justify-content: center; gap: 15px; }
-
 .social-btn {
     width: 40px; height: 40px; 
-    border: 1px solid var(--border-color);
-    border-radius: 50%; 
+    border: 1px solid var(--border-color); border-radius: 50%; 
     display: flex; align-items: center; justify-content: center;
-    transition: 0.3s; opacity: 0.8;
-    color: var(--text-color); /* Màu icon mặc định */
+    transition: 0.3s; opacity: 0.8; color: var(--text-color);
 }
-
-/* Kích thước icon SVG */
 .social-btn svg { width: 20px; height: 20px; fill: currentColor; transition: 0.3s; }
-
-/* Hiệu ứng khi rê chuột */
 .social-btn:hover { 
-    background: var(--text-color); 
-    color: var(--bg-color); 
-    opacity: 1; 
-    transform: scale(1.1); 
-    border-color: var(--text-color);
+    background: var(--text-color); color: var(--bg-color); 
+    opacity: 1; transform: scale(1.1); border-color: var(--text-color);
 }
+
+/* SKILL TAGS */
+.skill-section { margin: 40px 0; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.skill-tag {
+    padding: 6px 14px; border: 1px solid var(--border-color); border-radius: 20px;
+    font-size: 0.9rem; background: var(--card-bg);
+}
+.timeline-item {
+    border-left: 2px solid var(--border-color); padding-left: 20px;
+    margin-bottom: 30px; position: relative;
+}
+.timeline-item::before {
+    content: ""; width: 10px; height: 10px; background: var(--text-color);
+    position: absolute; left: -6px; top: 5px; border-radius: 50%;
+}
+.timeline-year { font-weight: bold; font-size: 0.9rem; color: var(--meta-color); }
+.timeline-title { font-weight: 600; font-size: 1.1rem; margin: 5px 0; }
+.timeline-desc { font-size: 0.95rem; color: var(--text-color); opacity: 0.9; }
 
 /* --- 4. BLOG & NỘI DUNG CHÍNH --- */
 .blog-grid {
@@ -116,26 +127,4 @@ nav a:hover, nav a.active { color: white; text-decoration: underline; }
     border-radius: 8px; padding: 25px; display: flex; flex-direction: column;
     transition: transform 0.3s ease;
 }
-.blog-card:hover { transform: translateY(-5px); border-color: var(--text-color); }
-.blog-card h2 a { text-decoration: none; color: var(--text-color); font-size: 1.5rem; }
-.blog-card-meta { font-size: 0.9rem; color: var(--meta-color); margin: 10px 0; font-style: italic; }
-.blog-card p { font-size: 1rem; color: var(--text-color); line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
-.read-more { text-decoration: none; color: var(--text-color); font-weight: 600; border-bottom: 1px solid var(--text-color); width: fit-content; }
-
-.blog-detail-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-.blog-detail-title { font-size: 2.5rem; margin-bottom: 10px; line-height: 1.2; }
-.blog-meta { color: var(--meta-color); font-style: italic; margin-bottom: 40px; display: block; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;}
-.blog-content p { margin-bottom: 20px; line-height: 1.8; text-align: justify; }
-.blog-content img { max-width: 100%; height: auto; display: block; margin: 30px auto; border-radius: 4px; }
-.back-link { display: inline-block; margin-top: 40px; color: var(--text-color); text-decoration: none; border-bottom: 1px solid var(--text-color); }
-
-.pagination { text-align: center; margin-bottom: 80px; }
-.page-btn { padding: 8px 16px; border: 1px solid var(--text-color); color: var(--text-color); text-decoration: none; margin: 0 5px; }
-
-.hero { text-align: center; padding: 120px 20px; }
-.hero h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 400; }
-.cta-button { padding: 12px 30px; border: 1px solid var(--text-color); color: var(--text-color); text-decoration: none; transition: 0.3s; font-size: 1.1rem; }
-.cta-button:hover { background: var(--text-color); color: var(--bg-color); }
-
-#progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: transparent; z-index: 9999; }
-#progress-bar {
+.blog-card:hover { transform: translateY(-5px); border
