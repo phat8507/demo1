@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "2026 Reading List"
-date: 2026-02-06
+date: 2026-02-05
 author: Phat Nguyen
 image: "images/z7509353967697_461ede7d5758c987559a1d38ca02361c.jpg"
 ---
