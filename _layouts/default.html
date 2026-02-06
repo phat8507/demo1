@@ -12,7 +12,6 @@
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
         
         <div class="header-right">
-            
             <div class="search-container">
                 <div class="search-input-wrapper">
                     <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -29,6 +28,23 @@
                 <a href="{{ '/blog/' | relative_url }}">blog</a>
                 <a href="{{ '/about.html' | relative_url }}">about</a>
             </nav>
+
+            <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="19.76" y1="19.76" x2="21.17" y2="21.17"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.76" x2="5.64" y2="21.17"></line>
+                    <line x1="19.76" y1="4.22" x2="21.17" y2="5.64"></line>
+                </svg>
+            </button>
             
             <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -54,6 +70,7 @@
     </button>
 
     <script>
+        // --- XỬ LÝ NGÀY THÁNG & MENU ---
         const today = new Date();
         document.getElementById('current-date').textContent = today.toLocaleDateString('vi-VN');
 
@@ -61,7 +78,7 @@
             document.getElementById('main-nav').classList.toggle('active');
         }
 
-        // Back to Top Logic
+        // --- XỬ LÝ BACK TO TOP ---
         const backToTopBtn = document.getElementById("back-to-top");
         window.addEventListener('scroll', function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -74,7 +91,36 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Search Logic
+        // --- XỬ LÝ DARK MODE (MỚI) ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const bodyElement = document.body;
+        const moonIcon = document.querySelector('.moon-icon');
+        const sunIcon = document.querySelector('.sun-icon');
+
+        // Kiểm tra sở thích đã lưu trong localStorage
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            bodyElement.classList.add('dark-mode');
+            moonIcon.style.display = 'none';
+            sunIcon.style.display = 'block';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            bodyElement.classList.toggle('dark-mode');
+            
+            // Thay đổi icon và lưu vào localStorage
+            if (bodyElement.classList.contains('dark-mode')) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // --- XỬ LÝ TÌM KIẾM ---
         const searchInput = document.getElementById('search-input');
         const resultsContainer = document.getElementById('results-container');
         let posts = [];
