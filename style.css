@@ -1,30 +1,17 @@
-/* --- 1. CẤU HÌNH & FONT (SPECTRAL) --- */
+/* --- 1. CẤU HÌNH & FONT --- */
 @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap');
 
 :root {
-    /* MÀU SẮC (MONOCHROME DARK) */
     --text-color: #ffffff; 
     --text-dim: #bbbbbb;   
-    --link-color: #ffffff; /* Link trắng giữ sự tối giản */
+    --link-color: #ffffff; 
     
-    /* CẤU HÌNH HÌNH NỀN */
-    /* Đường dẫn chính xác đến thư mục images */
+    /* BACKGROUND & GLASS */
     --bg-image: url('images/abstract-grainy-texture-background.jpg');
-
-    /* --- CÔNG THỨC KÍNH MẠNH MẼ (STRONGER GLASS) --- */
-    /* Tăng độ đục (opacity) để kính rõ nét hơn trên nền nhiễu hạt */
     --glass-bg: rgba(30, 30, 30, 0.65); 
-    
-    /* Viền kính sáng và sắc nét hơn */
     --glass-border: 1px solid rgba(255, 255, 255, 0.25);
-    
-    /* Tăng độ mờ hậu cảnh để làm mịn hạt noise phía sau kính */
     --glass-blur: 40px; 
-    
-    /* Bóng đổ sâu và rộng để tạo hiệu ứng nổi khối mạnh */
     --glass-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
-    
-    /* Bo góc vuông (Squircle) */
     --border-radius: 20px; 
 }
 
@@ -35,233 +22,181 @@ body {
     color: var(--text-color);
     display: flex; flex-direction: column; min-height: 100vh;
     font-size: 1.15rem; line-height: 1.7; overflow-x: hidden;
-    position: relative; /* Quan trọng cho lớp nền giả */
+    position: relative; 
 }
 
-/* --- TẠO LỚP HÌNH NỀN CỐ ĐỊNH --- */
 body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: -1; /* Nằm sau tất cả nội dung */
-    
-    background-image: var(--bg-image);
-    background-size: cover;       /* Phủ kín màn hình */
-    background-position: center;  /* Căn giữa */
-    background-repeat: no-repeat;
-    background-color: #111;       /* Màu dự phòng */
-    
-    /* Không cần filter blur ở đây vì bản thân ảnh đã là nhiễu hạt */
+    content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+    background-image: var(--bg-image); background-size: cover; background-position: center;
+    background-repeat: no-repeat; background-color: #111;
 }
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 a:hover { color: var(--text-dim); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
 
-/* CLASS DÙNG CHUNG CHO HIỆU ỨNG KÍNH */
+/* CLASS KÍNH CHUNG */
 .glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    border-radius: var(--border-radius);
+    background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border); box-shadow: var(--glass-shadow); border-radius: var(--border-radius);
 }
 
 /* --- 2. HEADER --- */
 header {
-    width: 90%; max-width: 1200px; 
-    margin: 20px auto 0 auto;
-    
-    /* Áp dụng kính mạnh mẽ */
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    border-radius: var(--border-radius);
-
+    width: 90%; max-width: 1200px; margin: 20px auto 0 auto;
+    background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border); box-shadow: var(--glass-shadow); border-radius: var(--border-radius);
     display: flex; justify-content: space-between; align-items: center;
     padding: 15px 30px; position: sticky; top: 20px; z-index: 1000;
 }
 
 .logo { font-size: 1.6rem; font-weight: 700; font-style: italic; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-.header-right { display: flex; align-items: center; gap: 20px; }
+.header-right { display: flex; align-items: center; gap: 20px; position: relative; }
 
-nav a { font-weight: 500; font-size: 1.1rem; opacity: 0.8; font-style: italic; color: var(--text-color); transition: 0.3s; }
+/* --- STYLE THANH TÌM KIẾM (NEW) --- */
+.search-container { position: relative; }
+
+#search-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 8px 20px;
+    color: #fff;
+    font-family: 'Spectral', serif;
+    font-size: 1rem;
+    width: 200px; /* Độ rộng mặc định */
+    transition: width 0.3s ease, background 0.3s;
+    outline: none;
+}
+#search-input:focus { width: 250px; background: rgba(255, 255, 255, 0.2); border-color: #fff; }
+#search-input::placeholder { color: rgba(255, 255, 255, 0.5); font-style: italic; }
+
+/* --- KẾT QUẢ TÌM KIẾM (DROPDOWN GLASS) --- */
+#results-container {
+    display: none; /* Ẩn mặc định */
+    position: absolute; top: 110%; right: 0;
+    width: 300px;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    overflow: hidden; z-index: 1001;
+    max-height: 400px; overflow-y: auto;
+}
+
+.search-result-item {
+    display: block; padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: 0.2s;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: rgba(255,255,255,0.1); text-decoration: none; }
+
+.result-title { display: block; font-weight: 600; color: #fff; font-size: 1.1rem; }
+.result-date { display: block; font-size: 0.85rem; color: #bbb; margin-top: 4px; font-style: italic; }
+.no-results { padding: 15px; color: #bbb; text-align: center; font-style: italic; }
+
+/* ----------------------------- */
+
+nav a { font-weight: 500; font-size: 1.1rem; opacity: 0.8; font-style: italic; color: var(--text-color); transition: 0.3s; margin-left: 10px;}
 nav a:hover { opacity: 1; border-bottom: 1px solid #fff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
 .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--text-color); }
 
 /* --- 3. TRANG HOME --- */
-.hero {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 100px 20px; min-height: 50vh;
-}
-
+.hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; min-height: 50vh; }
 .hero-glass-box {
-    padding: 60px 80px;
-    display: flex; flex-direction: column; align-items: center;
-    /* Hero box sáng hơn một chút để làm điểm nhấn */
-    background: rgba(40, 40, 40, 0.7);
-    backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: var(--glass-shadow);
-    border-radius: var(--border-radius);
+    padding: 60px 80px; display: flex; flex-direction: column; align-items: center;
+    background: rgba(40, 40, 40, 0.7); backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: var(--glass-shadow); border-radius: var(--border-radius);
 }
-
-.hero h1 { 
-    font-size: 5rem; margin-bottom: 30px; font-weight: 300; font-style: italic;
-    color: #ffffff; line-height: 1; text-shadow: 0 5px 20px rgba(0,0,0,0.8);
-}
-
+.hero h1 { font-size: 5rem; margin-bottom: 30px; font-weight: 300; font-style: italic; color: #ffffff; line-height: 1; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
 .cta-button {
-    padding: 15px 40px; 
-    border-radius: var(--border-radius);
-    background: #ffffff; color: #000 !important;
-    font-weight: 600; font-size: 1.1rem; font-style: italic; text-transform: uppercase; letter-spacing: 1px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: none; transform: scale(1);
-    text-decoration: none !important;
+    padding: 15px 40px; border-radius: var(--border-radius);
+    background: #ffffff; color: #000 !important; font-weight: 600; font-size: 1.1rem; font-style: italic;
+    text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.cta-button:hover { transform: scale(1.05); background: #e0e0e0; box-shadow: 0 15px 40px rgba(255,255,255,0.3); }
+.cta-button:hover { transform: scale(1.05); background: #e0e0e0; }
 
 /* --- 4. TRANG ABOUT --- */
-.about-container {
-    max-width: 1100px; margin: 60px auto; padding: 0 20px;
-    display: grid; grid-template-columns: 320px 1fr; gap: 50px; align-items: start;
-}
-
+.about-container { max-width: 1100px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: 320px 1fr; gap: 50px; align-items: start; }
 .about-avatar { 
     width: 100%; aspect-ratio: 1/1; object-fit: cover;
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: var(--glass-shadow); margin-bottom: 25px; 
-    padding: 10px; background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
+    border-radius: var(--border-radius); border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: var(--glass-shadow); margin-bottom: 25px; padding: 10px; background: rgba(255,255,255,0.1);
 }
-
 .gray-box {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    border-radius: var(--border-radius);
+    background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border); box-shadow: var(--glass-shadow); border-radius: var(--border-radius);
     padding: 50px; color: var(--text-color);
 }
-.gray-box p { color: var(--text-dim); }
-
 .about-social { display: flex; justify-content: center; gap: 15px; }
 .social-btn { 
-    width: 44px; height: 44px; border-radius: 12px; 
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-    display: flex; align-items: center; justify-content: center; transition: 0.3s; color: var(--text-color);
+    width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: 0.3s; color: var(--text-color);
 }
+.social-btn:hover { transform: translateY(-3px); background: #fff; color: #000; }
 .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
-.social-btn:hover { transform: translateY(-3px); background: #fff; color: #000; border-color: transparent; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-
 .about-lists-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 50px; }
-.list-section h3 { 
-    font-size: 1.4rem; font-weight: 400; font-style: italic; margin-bottom: 25px;
-    color: #fff; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px; display: inline-block; width: 100%;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-}
+.list-section h3 { font-size: 1.4rem; font-weight: 400; font-style: italic; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px; display: inline-block; width: 100%; }
 .vertical-list { list-style: none; padding: 0; }
-.vertical-list li {
-    padding: 12px 0; margin-bottom: 5px;
-    border-bottom: 1px dashed rgba(255,255,255,0.15);
-    font-size: 1.1rem; display: flex; align-items: center; color: var(--text-dim);
-}
-.vertical-list li:last-child { border-bottom: none; }
-.vertical-list li::before { content: "—"; color: rgba(255,255,255,0.6); font-weight: bold; margin-right: 15px; }
-.vertical-list li strong { color: #fff; margin-right: 8px; font-weight: 500;} 
+.vertical-list li { padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.15); display: flex; align-items: center; color: var(--text-dim); }
+.vertical-list li::before { content: "—"; font-weight: bold; margin-right: 15px; opacity: 0.7; }
 
 /* --- 5. BLOG CARDS --- */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 60px auto; padding: 0 20px; }
 .blog-card { 
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    border-radius: var(--border-radius);
+    background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border); box-shadow: var(--glass-shadow); border-radius: var(--border-radius);
     padding: 35px; transition: transform 0.4s; 
 }
-.blog-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.5); background: rgba(50,50,50,0.7); box-shadow: 0 40px 80px rgba(0,0,0,0.8); }
-.blog-card h2 a { font-weight: 400; font-size: 1.6rem; color: #fff; text-decoration: none; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
-.blog-card p { color: var(--text-dim); margin-top: 15px;}
-.read-more { color: #fff; font-weight: 500; font-style: italic; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); }
-.read-more:hover { border-bottom-color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+.blog-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.5); background: rgba(50,50,50,0.7); }
+.blog-card h2 a { font-weight: 400; font-size: 1.6rem; color: #fff; }
+.read-more { color: #fff; font-weight: 500; font-style: italic; border-bottom: 1px solid rgba(255,255,255,0.3); }
 
 /* --- 6. CHI TIẾT BÀI VIẾT --- */
 .blog-detail-container { max-width: 900px; margin: 80px auto; padding: 0 20px; }
-
 .blog-detail-glass-box { 
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    border: var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    border-radius: var(--border-radius);
-    padding: 60px; 
+    background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border); box-shadow: var(--glass-shadow); border-radius: var(--border-radius); padding: 60px; 
 }
-
-/* Header bài viết */
-.post-header {
-    text-align: left;
-    margin-bottom: 50px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding-bottom: 30px;
-}
-
-.blog-detail-title { 
-    font-size: 3.8rem; font-weight: 300; font-style: italic; 
-    margin-bottom: 20px; line-height: 1.1; color: #fff; 
-    text-align: left; text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-}
-
-.blog-meta { 
-    color: var(--text-dim); 
-    font-style: italic; 
-    font-size: 1.1rem; 
-    text-align: left; display: block;
-}
-
+.post-header { text-align: left; margin-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 30px; }
+.blog-detail-title { font-size: 3.8rem; font-weight: 300; font-style: italic; margin-bottom: 20px; line-height: 1.1; color: #fff; text-align: left; text-shadow: 0 3px 10px rgba(0,0,0,0.6); }
+.blog-meta { color: var(--text-dim); font-style: italic; font-size: 1.1rem; }
 .blog-content { color: var(--text-dim); font-size: 1.25rem; line-height: 1.9; text-align: left; }
-.blog-content p { margin-bottom: 30px; }
-.blog-content h2, .blog-content h3 { color: #fff; margin-top: 40px; margin-bottom: 20px; font-weight: 400; font-style: italic; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
 .blog-content img { max-width: 100%; border-radius: var(--border-radius); margin: 40px auto; display: block; box-shadow: var(--glass-shadow); border: 1px solid rgba(255,255,255,0.2); }
+.back-link { padding: 12px 30px; border-radius: var(--border-radius); border: 1px solid rgba(255,255,255,0.3); display: inline-block; font-weight: 500; font-style: italic; transition: 0.3s; color: #fff; }
+.back-link:hover { background: #fff; color: #000; }
 
-.back-link { padding: 12px 30px; border-radius: var(--border-radius); border: 1px solid rgba(255,255,255,0.3); display: inline-block; font-weight: 500; font-style: italic; transition: 0.3s; color: #fff; text-decoration: none;}
-.back-link:hover { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.4); }
-
-/* --- 7. FOOTER & BACK TO TOP --- */
+/* --- 7. FOOTER --- */
 footer { margin-top: auto; padding: 50px; text-align: center; font-size: 1rem; opacity: 0.7; font-style: italic; color: var(--text-dim); }
-
 #back-to-top {
-    position: fixed; bottom: 30px; right: 30px; z-index: 10000;
-    width: 50px !important; height: 50px !important;
-    border: 1px solid rgba(255,255,255,0.3); border-radius: 12px;
-    background: rgba(30,30,30,0.8); backdrop-filter: blur(10px); color: #fff; 
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    opacity: 0; visibility: hidden; 
-    transform: translateY(20px); transition: all 0.3s ease;
+    position: fixed; bottom: 30px; right: 30px; z-index: 10000; width: 50px; height: 50px;
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(30,30,30,0.8);
+    backdrop-filter: blur(10px); color: #fff; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease;
     display: flex; justify-content: center; align-items: center;
 }
-#back-to-top:hover { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.6); }
+#back-to-top:hover { background: #fff; color: #000; }
 #back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
 /* MOBILE */
 @media (max-width: 768px) {
-    header { width: 95%; padding: 15px 20px; }
+    header { width: 95%; padding: 15px 20px; flex-wrap: wrap; gap: 10px; }
+    .search-container { order: 3; width: 100%; margin-top: 10px; }
+    #search-input { width: 100%; }
+    #search-input:focus { width: 100%; }
+    #results-container { width: 100%; top: 100%; }
     .menu-toggle { display: block; filter: invert(1); }
     nav { 
-        display: none; position: absolute; top: 120%; left: 0; width: 100%; 
+        display: none; position: absolute; top: 100%; left: 0; width: 100%; 
         background: rgba(30, 30, 30, 0.95); backdrop-filter: blur(var(--glass-blur));
-        padding: 25px; border-radius: var(--border-radius); box-shadow: var(--glass-shadow);
-        flex-direction: column; text-align: center; border: 1px solid rgba(255,255,255,0.2);
+        padding: 25px; border-radius: var(--border-radius);
+        flex-direction: column; text-align: center; margin-top: 15px;
     }
     nav.active { display: flex; }
-    nav a { padding: 10px 0; font-size: 1.3rem;}
     .hero h1 { font-size: 3.5rem; }
     .hero-glass-box { padding: 40px 30px; width: 95%; }
     .about-container { grid-template-columns: 1fr; gap: 30px;}
-    .about-lists-grid { grid-template-columns: 1fr !important; gap: 30px; margin-top: 30px;}
     .about-avatar { width: 280px; margin: 0 auto 30px auto; display: block; }
-    .gray-box, .blog-detail-glass-box { padding: 35px 25px; } 
     .blog-detail-title { font-size: 2.5rem; }
 }
