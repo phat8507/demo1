@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 </head>
 <body>
+    
     <header>
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
         
         <div class="header-right">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search..." aria-label="Search">
+                <div id="results-container"></div> </div>
+
             <nav id="main-nav">
                 <a href="{{ '/' | relative_url }}">home</a>
                 <a href="{{ '/blog/' | relative_url }}">blog</a>
@@ -59,6 +64,56 @@
         function scrollToTop() {
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
+
+        // --- XỬ LÝ TÌM KIẾM (SEARCH LOGIC) ---
+        const searchInput = document.getElementById('search-input');
+        const resultsContainer = document.getElementById('results-container');
+        let posts = [];
+
+        // 1. Tải dữ liệu bài viết từ search.json
+        fetch('{{ "/search.json" | relative_url }}')
+            .then(response => response.json())
+            .then(data => { posts = data; });
+
+        // 2. Lắng nghe sự kiện gõ phím
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            resultsContainer.innerHTML = ''; // Xóa kết quả cũ
+
+            if (query.length > 0) {
+                // Lọc bài viết
+                const filteredPosts = posts.filter(post => 
+                    post.title.toLowerCase().includes(query)
+                );
+
+                // Hiển thị kết quả
+                if (filteredPosts.length > 0) {
+                    resultsContainer.style.display = 'block';
+                    filteredPosts.forEach(post => {
+                        const link = document.createElement('a');
+                        link.href = post.url;
+                        link.classList.add('search-result-item');
+                        link.innerHTML = `
+                            <span class="result-title">${post.title}</span>
+                            <span class="result-date">${post.date}</span>
+                        `;
+                        resultsContainer.appendChild(link);
+                    });
+                } else {
+                    resultsContainer.style.display = 'block';
+                    resultsContainer.innerHTML = '<div class="no-results">No posts found.</div>';
+                }
+            } else {
+                resultsContainer.style.display = 'none';
+            }
+        });
+
+        // Ẩn kết quả khi click ra ngoài
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
+                resultsContainer.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
