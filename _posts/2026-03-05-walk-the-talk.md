@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Walk the Talk: Personal Leadership"
-date: 2026-03-06
+date: 2026-03-05
 author: Phat Nguyen
-# Bạn có thể thêm dòng: image: "đường_dẫn_ảnh.jpg" vào đây nếu muốn có ảnh bìa
+imagine: images/7_jpg.jpg
 ---
 
 <div class="post-content-wrapper">
