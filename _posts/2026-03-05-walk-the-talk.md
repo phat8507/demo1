@@ -1,14 +1,17 @@
 ---
 layout: post
 title: "Walk the Talk: Personal Leadership"
-date: 2026-03-05
+date: 2026-03-06
 author: Phat Nguyen
-imagine: images/7_jpg.jpg
+image: "images/7_jpg.jpg"
+excerpt: '"What you do has far greater impact than what you say." – Stephen R. Covey'
 ---
 
 <div class="post-content-wrapper">
 
-> *"What you do has far greater impact than what you say." – Stephen R. Covey*
+<img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="post-featured-image">
+
+<blockquote>"What you do has far greater impact than what you say." – Stephen R. Covey</blockquote>
 
 <p>Trong môi trường học đường, bạn là một sinh viên. Trong một nhóm, bạn và các thành viên của mình đều bằng tuổi, đều là bạn bè, hoạt động không theo cơ chế sếp hay “Quan liêu”. Chính vì vậy, quyền lực “Leader” – chức danh không giúp gì nhiều. Niềm tin và hành động mới là thứ quyết định trọng lượng của lời nói và tôn trọng của các thành viên. Nobody “has to” follow you – people follow what they respect.</p>
 
@@ -20,6 +23,6 @@ imagine: images/7_jpg.jpg
 
 <p>Walk the Talk (idiom) – Nói được thì phải làm được. Hãy bắt đầu từ việc giữ cam kết với chính mình. Khi bạn làm đúng điều bạn nói, bạn xây từng “viên gạch” uy tín. Khi có uy tín, ảnh hưởng từ “hành động” bạn đã nói và làm được sẽ tạo nên phản ứng tích cực và có được niềm tin và sự tôn trọng trong nhóm, trong cộng đồng.</p>
 
-> *"What you do has far greater impact than what you say." – Stephen R. Covey*
+<blockquote>"What you do has far greater impact than what you say." – Stephen R. Covey</blockquote>
 
 </div>
