@@ -18,9 +18,9 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="text" id="search-input" placeholder="Search posts..." aria-label="Search posts">
+                <input type="text" id="search-input" placeholder="Search posts..." aria-label="Search posts" autocomplete="off" spellcheck="false">
             </div>
-            <div id="results-container"></div>
+            <div id="results-container" hidden></div>
         </div>
 
         <nav id="main-nav">
@@ -147,10 +147,16 @@
                 .replace(/'/g, '&#39;');
         }
 
+        function showResults(markup) {
+            if (!resultsContainer) return;
+            resultsContainer.innerHTML = markup;
+            resultsContainer.hidden = false;
+        }
+
         function hideResults() {
-            if (resultsContainer) {
-                resultsContainer.style.display = 'none';
-            }
+            if (!resultsContainer) return;
+            resultsContainer.innerHTML = '';
+            resultsContainer.hidden = true;
         }
 
         function normalizePosts(items) {
@@ -245,7 +251,6 @@
             if (!resultsContainer) return;
 
             const normalizedQuery = query.trim().toLowerCase();
-            resultsContainer.innerHTML = '';
 
             if (!normalizedQuery) {
                 hideResults();
@@ -253,8 +258,7 @@
             }
 
             if (!searchReady) {
-                resultsContainer.style.display = 'block';
-                resultsContainer.innerHTML = '<div class="no-results">Loading posts...</div>';
+                showResults('<div class="no-results">Loading posts...</div>');
                 return;
             }
 
@@ -266,20 +270,16 @@
                 return haystack.includes(normalizedQuery);
             }).slice(0, 8);
 
-            resultsContainer.style.display = 'block';
-
             if (!filteredPosts.length) {
-                resultsContainer.innerHTML = '<div class="no-results">No matching posts found.</div>';
+                showResults('<div class="no-results">No matching posts found.</div>');
                 return;
             }
 
-            filteredPosts.forEach((post) => {
-                const link = document.createElement('a');
-                link.href = post.url;
-                link.className = 'search-result-item';
-                link.innerHTML = `<span class="result-title">${escapeHtml(post.title)}</span><span class="result-date">${escapeHtml(post.date || '')}</span>`;
-                resultsContainer.appendChild(link);
-            });
+            const markup = filteredPosts.map((post) => (
+                `<a href="${escapeHtml(post.url)}" class="search-result-item"><span class="result-title">${escapeHtml(post.title)}</span><span class="result-date">${escapeHtml(post.date || '')}</span></a>`
+            )).join('');
+
+            showResults(markup);
         }
 
         bootstrapSearch();
