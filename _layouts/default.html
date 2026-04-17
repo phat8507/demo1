@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 </head>
 <body>
-    
     <header>
         <a href="{{ '/' | relative_url }}" class="logo">phat nguyen</a>
-        
+
         <div class="header-right">
             <div class="search-container">
                 <div class="search-input-wrapper">
-                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="search-input" placeholder="Search..." aria-label="Search">
+                    <input type="text" id="search-input" placeholder="Search..." aria-label="Search posts">
                 </div>
                 <div id="results-container"></div>
             </div>
@@ -29,11 +28,11 @@
                 <a href="{{ '/about.html' | relative_url }}">about</a>
             </nav>
 
-            <button id="theme-toggle" aria-label="Toggle Dark Mode">
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -45,10 +44,12 @@
                     <line x1="19.76" y1="4.22" x2="21.17" y2="5.64"></line>
                 </svg>
             </button>
-            
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 12H21" stroke-linecap="round"/><path d="M3 6H21" stroke-linecap="round"/><path d="M3 18H21" stroke-linecap="round"/>
+
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M3 12H21" stroke-linecap="round"></path>
+                    <path d="M3 6H21" stroke-linecap="round"></path>
+                    <path d="M3 18H21" stroke-linecap="round"></path>
                 </svg>
             </button>
         </div>
@@ -63,99 +64,155 @@
         <span id="current-date"></span>
     </footer>
 
-    <button id="back-to-top" onclick="scrollToTop()" aria-label="Lên đầu trang">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 19V5M5 12l7-7 7 7"/>
+    <button id="back-to-top" type="button" aria-label="Lên đầu trang">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7"></path>
         </svg>
     </button>
 
     <script>
-        // --- XỬ LÝ NGÀY THÁNG & MENU ---
-        const today = new Date();
-        document.getElementById('current-date').textContent = today.toLocaleDateString('vi-VN');
-
-        function toggleMenu() {
-            document.getElementById('main-nav').classList.toggle('active');
-        }
-
-        // --- XỬ LÝ BACK TO TOP ---
-        const backToTopBtn = document.getElementById("back-to-top");
-        window.addEventListener('scroll', function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                backToTopBtn.classList.add("show");
-            } else {
-                backToTopBtn.classList.remove("show");
-            }
-        });
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        // --- XỬ LÝ DARK MODE (MỚI) ---
+        const dateElement = document.getElementById('current-date');
         const themeToggleBtn = document.getElementById('theme-toggle');
         const bodyElement = document.body;
         const moonIcon = document.querySelector('.moon-icon');
         const sunIcon = document.querySelector('.sun-icon');
-
-        // Kiểm tra sở thích đã lưu trong localStorage
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            bodyElement.classList.add('dark-mode');
-            moonIcon.style.display = 'none';
-            sunIcon.style.display = 'block';
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            bodyElement.classList.toggle('dark-mode');
-            
-            // Thay đổi icon và lưu vào localStorage
-            if (bodyElement.classList.contains('dark-mode')) {
-                moonIcon.style.display = 'none';
-                sunIcon.style.display = 'block';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                moonIcon.style.display = 'block';
-                sunIcon.style.display = 'none';
-                localStorage.setItem('theme', 'light');
-            }
-        });
-
-        // --- XỬ LÝ TÌM KIẾM ---
+        const menuToggleBtn = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        const navLinks = mainNav ? Array.from(mainNav.querySelectorAll('a')) : [];
+        const backToTopBtn = document.getElementById('back-to-top');
         const searchInput = document.getElementById('search-input');
         const resultsContainer = document.getElementById('results-container');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let posts = [];
+        let lastKnownScroll = 0;
+        let isTicking = false;
 
-        fetch('{{ "/search.json" | relative_url }}')
-            .then(response => response.json())
-            .then(data => { posts = data; });
+        if (dateElement) {
+            dateElement.textContent = new Date().toLocaleDateString('vi-VN');
+        }
 
-        searchInput.addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            resultsContainer.innerHTML = ''; 
+        function syncThemeIcons(isDark) {
+            moonIcon.hidden = isDark;
+            sunIcon.hidden = !isDark;
+        }
 
-            if (query.length > 0) {
-                const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(query));
-                resultsContainer.style.display = 'block';
-                
-                if (filteredPosts.length > 0) {
-                    filteredPosts.forEach(post => {
-                        const link = document.createElement('a');
-                        link.href = post.url;
-                        link.classList.add('search-result-item');
-                        link.innerHTML = `<span class="result-title">${post.title}</span><span class="result-date">${post.date}</span>`;
-                        resultsContainer.appendChild(link);
-                    });
-                } else {
-                    resultsContainer.innerHTML = '<div class="no-results">No posts found.</div>';
+        const currentTheme = localStorage.getItem('theme');
+        const useDarkTheme = currentTheme === 'dark';
+        bodyElement.classList.toggle('dark-mode', useDarkTheme);
+        syncThemeIcons(useDarkTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = bodyElement.classList.toggle('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            syncThemeIcons(isDark);
+        });
+
+        function closeMenu() {
+            if (!mainNav || !menuToggleBtn) return;
+            mainNav.classList.remove('active');
+            menuToggleBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu() {
+            if (!mainNav || !menuToggleBtn) return;
+            const isOpen = mainNav.classList.toggle('active');
+            menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
+        }
+
+        if (menuToggleBtn) {
+            menuToggleBtn.addEventListener('click', toggleMenu);
+        }
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    closeMenu();
                 }
-            } else {
-                resultsContainer.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
             }
         });
 
-        document.addEventListener('click', function(e) {
-            if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
-                resultsContainer.style.display = 'none';
+        function updateBackToTop() {
+            if (!backToTopBtn) return;
+            backToTopBtn.classList.toggle('show', lastKnownScroll > 280);
+            isTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            lastKnownScroll = window.scrollY || document.documentElement.scrollTop;
+            if (!isTicking) {
+                window.requestAnimationFrame(updateBackToTop);
+                isTicking = true;
+            }
+        }, { passive: true });
+
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: reduceMotion ? 'auto' : 'smooth'
+                });
+            });
+        }
+
+        fetch('{{ "/search.json" | relative_url }}')
+            .then((response) => response.ok ? response.json() : [])
+            .then((data) => {
+                posts = Array.isArray(data) ? data : [];
+            })
+            .catch(() => {
+                posts = [];
+            });
+
+        function hideResults() {
+            resultsContainer.style.display = 'none';
+        }
+
+        function renderResults(query) {
+            const normalizedQuery = query.trim().toLowerCase();
+            resultsContainer.innerHTML = '';
+
+            if (!normalizedQuery) {
+                hideResults();
+                return;
+            }
+
+            const filteredPosts = posts
+                .filter((post) => post.title && post.title.toLowerCase().includes(normalizedQuery))
+                .slice(0, 6);
+
+            resultsContainer.style.display = 'block';
+
+            if (!filteredPosts.length) {
+                resultsContainer.innerHTML = '<div class="no-results">No posts found.</div>';
+                return;
+            }
+
+            filteredPosts.forEach((post) => {
+                const link = document.createElement('a');
+                link.href = post.url;
+                link.className = 'search-result-item';
+                link.innerHTML = `<span class="result-title">${post.title}</span><span class="result-date">${post.date || ''}</span>`;
+                resultsContainer.appendChild(link);
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (event) => {
+                renderResults(event.target.value);
+            });
+        }
+
+        document.addEventListener('click', (event) => {
+            if (!resultsContainer || !searchInput) return;
+            const clickedInsideSearch = searchInput.contains(event.target) || resultsContainer.contains(event.target);
+            if (!clickedInsideSearch) {
+                hideResults();
             }
         });
     </script>
