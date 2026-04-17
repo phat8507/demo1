@@ -26,8 +26,8 @@
     --transition-fast: 180ms var(--ease-standard);
     --transition-medium: 280ms var(--ease-standard);
     --transition-slow: 420ms var(--ease-soft);
-    --theme-overlay-light: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 247, 239, 0.88) 48%, rgba(235, 238, 225, 0.18));
-    --theme-overlay-dark: linear-gradient(180deg, rgba(26, 32, 42, 0.96), rgba(13, 16, 22, 0.9) 52%, rgba(13, 16, 22, 0.16));
+    --theme-overlay-light: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 247, 239, 0.96));
+    --theme-overlay-dark: linear-gradient(180deg, rgba(18, 23, 31, 0.98), rgba(13, 16, 22, 0.96));
 }
 
 body.dark-mode {
@@ -124,7 +124,7 @@ body.theme-transitioning .theme-transition-overlay {
 
 body.theme-sweep-light .theme-transition-overlay::before,
 body.theme-sweep-dark .theme-transition-overlay::after {
-    animation: themeFadeDown 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: themeFadeSoft 2500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 img {
@@ -1037,21 +1037,17 @@ footer {
     }
 }
 
-@keyframes themeFadeDown {
+@keyframes themeFadeSoft {
     0% {
         opacity: 0;
-        clip-path: inset(0 0 100% 0 round 0);
     }
-    20% {
+    12% {
         opacity: 1;
-        clip-path: inset(0 0 60% 0 round 0);
     }
-    65% {
-        opacity: 0.94;
-        clip-path: inset(0 0 0 0 round 0);
+    72% {
+        opacity: 1;
     }
     100% {
         opacity: 0;
-        clip-path: inset(0 0 0 0 round 0);
     }
 }
